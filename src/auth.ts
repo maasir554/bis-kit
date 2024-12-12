@@ -1,9 +1,14 @@
 import NextAuth, { CredentialsSignin } from "next-auth"
 import Google from "next-auth/providers/google" 
 import Credentials from "next-auth/providers/credentials"
-import { User } from "./models/userModel"
+// import { User } from "./models/userModel"
+
+import { PrismaClient } from '@prisma/client'
+
 import { compare } from "bcryptjs"
-import { connectToDatabase } from "./lib/utils"
+// import { connectToDatabase } from "./lib/utils"
+
+const prisma = new PrismaClient();
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -33,10 +38,22 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 cause:"Email is invalid"
             });
             
-            await connectToDatabase(); // now, connect to the database
+            // await connectToDatabase(); // now, connect to the database
 
-            const user = await User.findOne({email}).select("+password");
+            // const user = await User.findOne({email}).select("+password");
             // NOTE: '+' is written to indicate that it is optional
+
+            const user = await prisma.user.findUnique({
+                where: {
+                  email: email
+                },
+                select: {
+                  id: true,
+                  email: true,
+                  name: true,
+                  password: true  // Including password field explicitly
+                }
+              });
 
             if (!user) throw new CredentialsSignin("User does not exist");
 
@@ -46,12 +63,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
             if (!isMatch) throw new CredentialsSignin("Email and password does not match.")
         
-            else return {name:user.name, email: user.email, id: user.__id};
+            else return {name:user.name, email: user.email, id: user.id};
             }
     }),
 ],
 })
-
-export const config = {
-    runtime: 'nodejs',
-  };

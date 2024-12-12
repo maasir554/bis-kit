@@ -1,6 +1,6 @@
 
 datasource db {
-  url      = env("MONGODB_URI")
+  url      = env("MONGO_URL")
   provider = "mongodb"
 }
 

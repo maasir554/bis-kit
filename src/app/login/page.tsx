@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link";
 import { credentialsLogin } from "@/actions/login";
 import { toast } from "sonner";
+import { loginHandler } from "./loginHandler";
 
 
 const Page = () => {
@@ -30,24 +31,7 @@ const Page = () => {
                 </CardHeader>
                 <CardContent className="flex flex-col gap-4">
                     <form 
-                        action={async (formData:FormData) =>
-                            {
-                                const email = formData.get("email") as string;
-                                const password = formData.get("password") as string;
-
-                                if(!email || !password) toast.error("Please provide both credentials");
-                                else{
-                                    const toastId = toast.loading("Logging in...");
-                                    const error = await credentialsLogin(email,password);
-                                    if(!error){
-                                        toast.success("Login Successful",{id:toastId});
-                                    }
-                                    else{
-                                        toast.error("Error: "+error,{id:toastId})
-                                    }
-                                }
-                            }
-                        }
+                        action={loginHandler}
                         className="flex flex-col gap-4">
                         <Input className="bg-neutral-800 text-sm" placeholder="Enter your Email" name="email" type="email" />
                         <Input className="bg-neutral-800 text-sm" placeholder="Enter Password" name="password" type="password" />

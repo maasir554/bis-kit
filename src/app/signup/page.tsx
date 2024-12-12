@@ -1,5 +1,6 @@
-
 import { hash } from "bcryptjs";
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient();
 
 import {
     Card,
@@ -15,41 +16,61 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button"
 import Link from "next/link";
 
-import { User } from "@/models/userModel";
+// import { User } from "@/models/userModel";
 import { redirect } from "next/navigation";
-import { connectToDatabase } from "@/lib/utils";
+// import { connectToDatabase } from "@/lib/utils";
 
 
 
 const Page = () => {
     
-    const formSubmitHandeler = async (formData:FormData)=>{
-        "use server";
-        const name  = formData.get("name") as string | undefined;
-        const email = formData.get("email") as string | undefined;
-        const password = formData.get("password") as string | undefined;
-        if(!name || !email || !password) throw new Error("Please provide all fields");
+    // const formSubmitHandeler = async (formData:FormData)=>{
+    //     "use server";
+    //     const name  = formData.get("name") as string | undefined;
+    //     const email = formData.get("email") as string | undefined;
+    //     const password = formData.get("password") as string | undefined;
+    //     if(!name || !email || !password) throw new Error("Please provide all fields");
         
-        connectToDatabase() //estabilish connection with the database
+    //     // connectToDatabase() //estabilish connection with the database
 
-        const user = await User.findOne({email}) // to check if the user already exist.
-        if (user){ 
-            console.log(user);
-            throw new Error ("User already exist.");
-        }
+    //     // const user = await User.findOne({email}) // to check if the user already exist.
+    //     const user= await prisma.user.findUnique({
+    //         where: {
+    //           email: email
+    //         },
+    //         select: {
+    //           id: true,
+    //           email: true,
+    //           name: true,
+    //           password: true  // Including password field explicitly
+    //         }
+    //       });
+
+    //     if (user){ 
+    //         console.log(user);
+    //         throw new Error ("User already exist.");
+    //     }
         
-        const hashedPassword = await hash(password,10);
+    //     const hashedPassword = await hash(password,10);
 
-        //create new user
-        User.create({
-            name:name,
-            email:email,
-            password:hashedPassword
-        });
+    //     //create new user
+
+    //     // User.create({
+    //     //     name:name,
+    //     //     email:email,
+    //     //     password:hashedPassword
+    //     // });
+    //     const newUser = await prisma.user.create({
+    //         data: {
+    //           name: name,
+    //           email:email,
+    //           password:hashedPassword
+    //         },
+    //       })
         
-        redirect("/login")
+    //     redirect("/login")
 
-    }
+    // }
     
     return(
         <div className="flex justify-center items-center w-full h-dvh">
@@ -60,7 +81,55 @@ const Page = () => {
                 </CardHeader>
                 <CardContent className="flex flex-col gap-4">
                     <form 
-                        action={formSubmitHandeler} 
+                        action={
+                            async (formData:FormData)=>{
+                                "use server";
+                                const name  = formData.get("name") as string | undefined;
+                                const email = formData.get("email") as string | undefined;
+                                const password = formData.get("password") as string | undefined;
+                                if(!name || !email || !password) throw new Error("Please provide all fields");
+                                
+                                // connectToDatabase() //estabilish connection with the database
+                        
+                                // const user = await User.findOne({email}) // to check if the user already exist.
+                                const user= await prisma.user.findUnique({
+                                    where: {
+                                      email: email
+                                    },
+                                    select: {
+                                      id: true,
+                                      email: true,
+                                      name: true,
+                                      password: true  // Including password field explicitly
+                                    }
+                                  });
+                        
+                                if (user){ 
+                                    console.log(user);
+                                    throw new Error ("User already exist.");
+                                }
+                                
+                                const hashedPassword = await hash(password,10);
+                        
+                                //create new user
+                        
+                                // User.create({
+                                //     name:name,
+                                //     email:email,
+                                //     password:hashedPassword
+                                // });
+                                const newUser = await prisma.user.create({
+                                    data: {
+                                      name: name,
+                                      email:email,
+                                      password:hashedPassword
+                                    },
+                                  })
+                                
+                                redirect("/login");
+                        
+                            }
+                        } 
                         className="flex flex-col gap-4">
                         <Input className="bg-neutral-800 border-neutral-600" placeholder="Enter your Name" name="name" type="text" />
                         <Input className="bg-neutral-800 border-neutral-600" placeholder="Enter your Email" name="email" type="email" />
