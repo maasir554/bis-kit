@@ -48,7 +48,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         
             else return {name:user.name, email: user.email, id: user.__id};
             }
-    })
-  ],
+    }),
+],
 })
 
+export const config = {
+    runtime: 'nodejs',
+  };
