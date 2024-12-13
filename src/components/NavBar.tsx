@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { useSession } from "next-auth/react";
 import { Menu, X } from "lucide-react";
 
 import { signOut } from "next-auth/react";
@@ -79,7 +78,7 @@ export const NavBar = ({userFromProps}:{userFromProps:User|undefined|null}) => {
 
   // state of navbar [mobile devices]
 
-  const [isOpen, setIsOpen] = useState<Boolean>(false)
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const toggleMenuOpen = () => setIsOpen(isOpen => !isOpen);
 
