@@ -3,7 +3,7 @@
 import {
     Card,
     CardContent,
-    CardDescription,
+    // CardDescription,
     CardFooter,
     CardHeader,
     CardTitle,
@@ -13,8 +13,7 @@ import { Input } from "@/components/ui/input";
 
 import { Button } from "@/components/ui/button"
 import Link from "next/link";
-import { credentialsLogin } from "@/actions/login";
-import { toast } from "sonner";
+
 import { loginHandler } from "./loginHandler";
 
 
@@ -47,7 +46,7 @@ const Page = () => {
                         </Button>
                     </form>
  
-                    <Link className="text-themeblue text-sm mt-6 hover:underline" href={"/signup"}> Don't Have an account? Signup</Link>
+                    <Link className="text-themeblue text-sm mt-6 hover:underline" href={"/signup"}> Don&apos;t Have an account? Signup</Link>
                 </CardFooter>
             </Card>
         </div>

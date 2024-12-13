@@ -118,13 +118,13 @@ const Page = () => {
                                 //     email:email,
                                 //     password:hashedPassword
                                 // });
-                                const newUser = await prisma.user.create({
+                                await prisma.user.create({
                                     data: {
                                       name: name,
                                       email:email,
                                       password:hashedPassword
                                     },
-                                  })
+                                  });
                                 
                                 redirect("/login");
                         

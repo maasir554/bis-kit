@@ -6,8 +6,8 @@ export const HomePage = () => (
             <br/>Through Gaming
     </h1>
     <p className="text-lg font-normal text-center max-w-4xl -translate-y-1/2">
-        This will be the home page of the website and can be seen when user is on "/" endpoint while NOT logged in.
-        and also on "/Home" endpoint even if the user is logged in
+        This will be the home page of the website and can be seen when user is on &quot;/&quot; endpoint while NOT logged in.
+        and also on &quot;/Home&quot; endpoint even if the user is logged in
     </p>
 </section>
 )
