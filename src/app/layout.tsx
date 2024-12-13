@@ -17,15 +17,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <SessionProvider>
       <body
         className={`antialiased flex flex-col items-center justify-start w-screen bg-neutral-950 text-neutral-100`}
       >
-        <SessionProvider>
+        
           <NavBar/>
-        </SessionProvider>
+        
         {children}
         <Toaster/>
       </body>
+      </SessionProvider>
     </html>
   );
 }

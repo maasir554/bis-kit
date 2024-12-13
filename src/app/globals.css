@@ -84,3 +84,13 @@ input:-webkit-autofill {
   caret-color: white;
   border-color: rgb(87, 87, 87);
 }
+
+@keyframes fadeanim {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+
+}
