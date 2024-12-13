@@ -2,9 +2,10 @@
 
 import Link from "next/link"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { User } from "next-auth";
 import { useSession } from "next-auth/react";
 import { Menu, X } from "lucide-react";
+
+import { signOut } from "next-auth/react";
 
 import { MouseEventHandler, useEffect, useState } from "react";
 
@@ -16,6 +17,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { User } from "next-auth";
 
 
 
@@ -31,10 +33,14 @@ const LoginSignupBox = ({onClick}:{onClick:MouseEventHandler}) => (
 </span>
 );
 
-const UserProfileBox = () => {
+const UserProfileBox = ({userFromProps}:{userFromProps:User}) => {
   // const user = (await auth())?.user;
-  const {data:session} = useSession()
-  const user = session?.user;
+  
+  //client method to fetch user data
+  // const {data:session} = useSession()
+  // const user = session?.user;
+
+  const user = userFromProps;
 
   return (
       <DropdownMenu>
@@ -55,7 +61,7 @@ const UserProfileBox = () => {
           </DropdownMenuLabel>
           <DropdownMenuSeparator className="bg-neutral-600"/>
           <DropdownMenuItem>Profile</DropdownMenuItem>
-          <DropdownMenuItem className="text-red-400 hover:text-red-900 hover:bg-black">
+          <DropdownMenuItem onClick={()=>signOut()} className="text-red-400 hover:text-red-900 hover:bg-black">
               Logout
           </DropdownMenuItem>
         </DropdownMenuContent>
@@ -63,11 +69,13 @@ const UserProfileBox = () => {
   )
 }
 
-export const NavBar = () => {
+export const NavBar = ({userFromProps}:{userFromProps:User|undefined|null}) => {
 
   // use the session to get auth details like user name, email, and image
-  const {data:session} = useSession()
-  const user = session?.user;
+  // const {data:session} = useSession()
+  // const user = session?.user;
+
+  const user = userFromProps
 
   // state of navbar [mobile devices]
 
@@ -108,7 +116,7 @@ export const NavBar = () => {
         {
           user
           ?
-          <UserProfileBox />
+          <UserProfileBox userFromProps={user} />
           :
           <LoginSignupBox onClick={()=>setIsOpen(false)}/>
         }
