@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 import {
     Card,
     CardContent,
-    CardDescription,
+    // CardDescription,
     CardFooter,
     CardHeader,
     CardTitle,
