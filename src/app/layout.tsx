@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { NavBar } from "@/components/NavBar";
 import { Toaster } from "@/components/ui/sonner"
+import { SessionProvider } from "next-auth/react";
 
 import "./globals.css";
 
@@ -19,7 +20,9 @@ export default function RootLayout({
       <body
         className={`antialiased flex flex-col items-center justify-start w-screen bg-neutral-950 text-neutral-100`}
       >
-        <NavBar/>
+        <SessionProvider>
+          <NavBar/>
+        </SessionProvider>
         {children}
         <Toaster/>
       </body>

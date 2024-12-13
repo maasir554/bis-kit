@@ -73,10 +73,10 @@ const Page = () => {
     // }
     
     return(
-        <div className="flex justify-center items-center w-full h-dvh">
-            <Card className="bg-neutral-900 text-white max-w-xl w-full border-neutral-600">
+        <div className="flex justify-center items-center w-full h-dvh p-5">
+            <Card className="bg-neutral-800 border-none text-white max-w-xl w-full py-6 px-2 sm:px-5 rounded-2xl">
                 <CardHeader>
-                    <CardTitle>Signup</CardTitle>
+                    <CardTitle className="w-full text-center text-2xl sm:text:3xl md:text-4xl mb-2 sm:mb-5">Create an account</CardTitle>
                     {/* <CardDescription>Card Description</CardDescription> */}
                 </CardHeader>
                 <CardContent className="flex flex-col gap-4">
@@ -131,22 +131,22 @@ const Page = () => {
                             }
                         } 
                         className="flex flex-col gap-4">
-                        <Input className="bg-neutral-800 border-neutral-600" placeholder="Enter your Name" name="name" type="text" />
-                        <Input className="bg-neutral-800 border-neutral-600" placeholder="Enter your Email" name="email" type="email" />
-                        <Input className="bg-neutral-800 border-neutral-600" placeholder="Create Password" name="password" type="password" />
-                        <Button className="bg-neutral-700 text-white hover:text-black hover:bg-white" type="submit">Create Account</Button>
+                        <Input className="bg-neutral-800 border-neutral-600 py-5 sm:py-7 rounded-full px-4 sm:px-7 text-xs sm:text-sm" placeholder="Name" name="name" type="text" />
+                        <Input className="bg-neutral-800 border-neutral-600 py-5 sm:py-7 rounded-full px-4 sm:px-7 text-xs sm:text-sm" placeholder="Email" name="email" type="email" />
+                        <Input className="bg-neutral-800 border-neutral-600 py-5 sm:py-7 rounded-full px-4 sm:px-7 text-xs sm:text-sm" placeholder="Create Password" name="password" type="password" />
+                        <Button className=" text-white bg-gradient-to-r from-themeorange to-themeblue py-5 sm:py-7 rounded-full hover:from-themeblue hover:to-themeorange " type="submit">Create Account</Button>
                     </form>
                     
                 </CardContent>
                 <CardFooter className="flex flex-col w-full gap-4"> 
                     <p className="w-full text-center">or</p>
-                    <form action="">
-                        <Button className="bg-neutral-800 text-neutral-200" type="submit" variant={"outline"}>
+                    <form action="" className="w-full">
+                        <Button className="text-neutral-900 py-5 sm:py-7 rounded-full w-full " type="submit" variant={"outline"}>
                             Sign up with Google
                         </Button>
                     </form>
 
-                    <Link className="text-sm text-themeblue hover:underline mt-8" href={"/login"}> Already have an account? login</Link>
+                    <Link className="text-sm text-neutral-300 hover:underline mt-8" href={"/login"}> Already have an account? <span className="text-themeblue">login</span></Link>
                 </CardFooter>
             </Card>
         </div>
