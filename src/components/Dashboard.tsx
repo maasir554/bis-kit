@@ -1,7 +1,7 @@
 import { User } from "next-auth"
 
 interface DashboardProps extends React.HTMLAttributes<HTMLDivElement> {
-    user: User;
+    user: User|null|undefined;
   }
 
 export const DashBoard = ({user}:DashboardProps) => {

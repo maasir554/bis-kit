@@ -2,10 +2,14 @@
 
 import { X } from "lucide-react"
 import { useState } from "react"
+import { useSession } from "next-auth/react"
+import Link from "next/link"
 
 export const GameCard = ({heading, description, imgLink, instructions}:{heading:string, description:string,imgLink:string, instructions: string[]}) => 
     {
     
+    const {data:session} = useSession();
+
     const [isDescriptionOpen, setIsDescriptionOpen] = useState<boolean>(false)
     
     return <span className="flex flex-col rounded-xl bg-stone-800 p-5 gap-5 min-w-[300px] w-1/4 min-h-[100px]">
@@ -73,9 +77,14 @@ export const GameCard = ({heading, description, imgLink, instructions}:{heading:
                                 </ol>
                             </div>
 
-                            <button className="active:scale-95 w-full p-3 bg-gradient-to-r from-themeorange hover:from-themeblue to-themeblue hover:to-themeorange border-2 border-none rounded-full text-center transition-colors" >
+                            <Link 
+                            href={
+                                (session?.user)?"/dashboard":"/login"
+                            }
+                            className="active:scale-95 w-full p-3 bg-gradient-to-r from-themeorange hover:from-themeblue to-themeblue hover:to-themeorange border-2 border-none rounded-full text-center transition-colors" >
                                 Play Now
-                            </button>
+                            </Link>
+                            {/* button to close card */}
                             <button 
                             onClick={()=>setIsDescriptionOpen(false)}
                             className="absolute top-0 right-0 p-1 rounded-full text-themeorange bg-neutral-800 hover:bg-neutral-700 -translate-x-1/2 translate-y-1/2 active:scale-95"
