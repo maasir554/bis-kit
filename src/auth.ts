@@ -36,11 +36,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             if (typeof email !== "string") throw new CredentialsSignin({
                 cause:"Email is invalid"
             });
-            
-            // await connectToDatabase(); // now, connect to the database
-
-            // const user = await User.findOne({email}).select("+password");
-            // NOTE: '+' is written to indicate that it is optional
 
             const user = await prisma.user.findUnique({
                 where: {
@@ -56,7 +51,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
             if (!user) throw new CredentialsSignin("User does not exist");
 
-            if (!user.password) throw new CredentialsSignin("Invalid Email or password");
+            if (!user.password) throw new CredentialsSignin("Invalid Email or password", {code:"404"});
 
             const isMatch = await compare(password, user.password)
 
@@ -66,6 +61,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             }
     }),
 ],
+
+pages:{
+  signIn: "/login",
+},
+
 secret: process.env.AUTH_SECRET,
 
 callbacks: {

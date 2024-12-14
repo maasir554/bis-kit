@@ -1,25 +1,27 @@
-"use client"
+"use server"
 
-import { signIn } from "next-auth/react";
+import { signIn } from "@/auth";
 import { CredentialsSignin } from "next-auth";
 
 
-export const credentialsLogin = async (email:string, password:string) => {
-
-    if (!email || !password) throw new Error ("Please provide the required credentials.");
+const credentialsLogin = async (email:string, password:string) => {
 
     try{
         await signIn("credentials", {
-            email,
-            password,
-            redirect:true,
-            redirectTo: "/"
+                    email,
+                    password,
+                    redirect:false,
+                    // redirectTo: "/"
         });
     }
     catch(error){
+        console.log(error);
         const err = error as CredentialsSignin;
-        console.log(err.message);
-        return error;
+        return err;
     }
-    return false;
+
+     
+
 }
+
+export {credentialsLogin}

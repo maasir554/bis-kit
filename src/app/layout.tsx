@@ -18,6 +18,7 @@ export default async function RootLayout({
 }>) {
   const session = await auth();
   const user = session?.user;
+  
   return (
     <html lang="en">
       <SessionProvider>
@@ -28,7 +29,13 @@ export default async function RootLayout({
           <NavBar userFromProps={user} />
         
         {children}
-        <Toaster/>
+        <Toaster
+          toastOptions={{
+            classNames:{
+              error:"bg-red-600"
+            }
+          }}
+        />
       </body>
       </SessionProvider>
     </html>

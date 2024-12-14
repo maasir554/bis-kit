@@ -8,6 +8,8 @@ import { signOut } from "next-auth/react";
 
 import { MouseEventHandler, useEffect, useState } from "react";
 
+// import { useSession } from "next-auth/react";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -68,7 +70,7 @@ export const NavBar = ({userFromProps}:{userFromProps:User|undefined|null}) => {
   // use the session to get auth details like user name, email, and image
   // const {data:session} = useSession()
   // const user = session?.user;
-
+// 
   const user = userFromProps
 
   // state of navbar [mobile devices]
