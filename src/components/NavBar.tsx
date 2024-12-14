@@ -85,7 +85,9 @@ export const NavBar = ({userFromProps}:{userFromProps:User|undefined|null}) => {
 
   return(
         <nav className={`overflow-hidden z-50 backdrop-blur-lg fixed left-1/2 -translate-x-1/2 bg-opacity-10 bg-neutral-200 flex flex-row items-center gap-4 lg:gap-6 xl:gap-10 w-11/12 md:w-10/12 rounded-b-xl h-16 px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 text-md md:text-xs lg:text-sm transition-all duration-300 ease-in-out ${isOpen?"top-0 bottom-0 rounded-none flex-col py-10 bg-opacity-75 bg-neutral-900 w-screen h-screen justify-center":"top-0 justify-between "} `}>
-        <Link href={"/"} 
+        <Link 
+        onClick={()=>setIsOpen(false)}
+        href={"/"} 
         className=
         {
         " text-neutral-300 font-semibold"

@@ -11,7 +11,7 @@ export const GameCard = ({heading, description, imgLink, instructions}:{heading:
     return <span className="flex flex-col rounded-xl bg-stone-800 p-5 gap-5 min-w-[300px] w-1/4 min-h-[100px]">
            
             <div className={"w-full aspect-[1.35] rounded-lg overflow-hidden flex items-center justify-center"}>
-                <img className="w-full h-auto" src={imgLink} alt={heading} />
+                <img inert={true} className="w-full h-auto" src={imgLink} alt={heading} />
             </div>
 
             <h1 className = "text-md lg:text-lg xl:text-xl text-white font-semibold">
@@ -67,7 +67,7 @@ export const GameCard = ({heading, description, imgLink, instructions}:{heading:
                                     <li className=" flex flex-row gap-2 mb-1"><span className="h-full text-themeorange">3.</span> <span>Higher Score will be awarded if you complete the game in less amount of time and consuming less number of moves.</span> </li> */}
                                     {instructions.map((instruction, idx)=>
                                             (
-                                                <li key={idx} className=" flex flex-row gap-2 mb-1"><span className="h-full text-themeorange">{idx}</span><span>{instruction}</span> </li>
+                                                <li key={idx} className=" flex flex-row gap-2 mb-1 justify-center"><span className="h-full text-themeorange flex-[0.03]">{idx+1}.</span><span className="flex-1 flex justify-start">{instruction}</span> </li>
                                             )
                                     )}
                                 </ol>
