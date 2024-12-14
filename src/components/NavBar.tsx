@@ -33,11 +33,6 @@ const LoginSignupBox = ({onClick}:{onClick:MouseEventHandler}) => (
 );
 
 const UserProfileBox = ({userFromProps}:{userFromProps:User}) => {
-  // const user = (await auth())?.user;
-  
-  //client method to fetch user data
-  // const {data:session} = useSession()
-  // const user = session?.user;
 
   const user = userFromProps;
 

@@ -94,3 +94,18 @@ input:-webkit-autofill {
   }
 
 }
+
+*{
+  scroll-behavior: smooth;
+}
+
+@keyframes show-in {
+  0%{
+    transform: translate(-50%,-60%);
+    opacity: 0;
+  }
+  100%{
+    transform: translate(-50%,-50%);
+    opacity: 1;
+  }
+}
