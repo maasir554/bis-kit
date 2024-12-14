@@ -1,8 +1,6 @@
-import NextAuth, { CredentialsSignin } from "next-auth"
+import NextAuth, {CredentialsSignin} from "next-auth"
 import Google from "next-auth/providers/google" 
 import Credentials from "next-auth/providers/credentials"
-// import { User } from "./models/userModel"
-
 import { PrismaClient } from '@prisma/client'
 
 import { compare } from "bcryptjs"
@@ -11,11 +9,13 @@ import { compare } from "bcryptjs"
 const prisma = new PrismaClient();
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  // adapter: PrismaAdapter(prisma),
   providers: [
     Google({
         clientId: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET
     }),
+
     Credentials({
         name:"Credentials",
         credentials:{
@@ -68,4 +68,35 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
 ],
 secret: process.env.AUTH_SECRET,
+
+callbacks: {
+  async signIn({ user, account,}) {
+    if (account?.provider === "google" && user.email && user.name) {
+      try {
+       const existingUser = await prisma.user.findUnique({
+          where: { email: user.email }
+        })
+      
+        
+        if (!existingUser) {
+          await prisma.user.create({
+            data: {
+              email: user.email,
+              name: user.name,
+              profilepiclink:user.image
+              
+            }
+          })
+        }
+        return true
+      } catch (error) {
+        console.error("Error saving user:", error)
+        return false
+      }
+    }
+    return true
+  },
+
+},
+
 })

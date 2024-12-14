@@ -10,6 +10,7 @@ export const loginHandler = async (formData:FormData) =>
         const password = formData.get("password") as string;
 
         if(!email || !password) toast.error("Please provide both credentials");
+        
         else{
             const toastId = toast.loading("Logging in...");
             const error = await credentialsLogin(email,password);

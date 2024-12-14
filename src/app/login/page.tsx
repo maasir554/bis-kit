@@ -16,6 +16,8 @@ import Link from "next/link";
 
 import { loginHandler } from "./loginHandler";
 
+import { signIn } from "next-auth/react"; //use the client version heere
+// because we want tto work with client dynamically programmed components like toasts.
 
 const Page = () => {
 
@@ -40,7 +42,12 @@ const Page = () => {
                 </CardContent>
                 <CardFooter className="flex flex-col w-full gap-4"> 
                     <p className="w-full text-center">or</p>
-                    <form action="" className="w-full">
+                    <form action={    
+                                    async () => {
+                                        // "use server";
+                                        await signIn("google", {redirect:true,redirectTo:"/"});
+                                    }
+                                } className="w-full">
                         <Button type="submit" variant={"outline"} className="text-neutral-900 py-5 sm:py-7 rounded-full w-full">
                             Login with Google
                         </Button>
