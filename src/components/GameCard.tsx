@@ -5,14 +5,14 @@ import { useState } from "react"
 import { useSession } from "next-auth/react"
 import Link from "next/link"
 
-export const GameCard = ({heading, description, imgLink, instructions}:{heading:string, description:string,imgLink:string, instructions: string[]}) => 
+export const GameCard = ({heading, description, imgLink, instructions, className}:{heading:string, description:string,imgLink:string, instructions: string[], className?:string|undefined|null}) => 
     {
     
     const {data:session} = useSession();
 
     const [isDescriptionOpen, setIsDescriptionOpen] = useState<boolean>(false)
     
-    return <span className="flex flex-col rounded-xl bg-stone-800 p-5 gap-5 min-w-[300px] w-1/4 min-h-[100px]">
+    return <span className={"flex flex-col rounded-xl bg-stone-800 p-5 gap-5 min-w-[300px] w-1/4 min-h-[100px]"+" "+className}>
            
             <div className={"w-full aspect-[1.35] rounded-lg overflow-hidden flex items-center justify-center"}>
                 <img inert={true} className="w-full h-auto" src={imgLink} alt={heading} />
@@ -21,15 +21,16 @@ export const GameCard = ({heading, description, imgLink, instructions}:{heading:
             <h1 className = "text-md lg:text-lg xl:text-xl text-white font-semibold">
                 {heading}
             </h1>
-            <div className="flex flex-col gap-3 font-medium">
+
+            <div className="flex flex-col gap-3 font-medium text-xs sm:text-sm md:text-base">
 
                 <button 
                 onClick={()=>setIsDescriptionOpen(true)}
-                className="active:bg-opacity-85 w-full p-3 bg-transparent border-2 border-white rounded-full text-center hover:bg-white hover:text-black  transition-colors" 
+                className="active:bg-opacity-85 w-full p-1 py-3 sm-p-2 md:p-3 bg-transparent border-2 border-white rounded-full text-center hover:bg-white hover:text-black  transition-colors whitespace-nowrap" 
                 >
                     How to Play
                 </button>
-                <button className="active:scale-95 w-full p-3 bg-gradient-to-r from-themeorange hover:from-themeblue to-themeblue hover:to-themeorange border-2 border-none rounded-full text-center transition-colors" >
+                <button className="active:scale-95 w-full p-1 py-3 sm:p-2 md:p-3 bg-gradient-to-r from-themeorange hover:from-themeblue to-themeblue hover:to-themeorange border-2 border-none rounded-full text-center transition-colors whitespace-nowrap" >
                     Play Now
                 </button>
 
