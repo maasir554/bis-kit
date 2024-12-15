@@ -41,8 +41,8 @@ const UserProfileBox = ({userFromProps}:{userFromProps:User}) => {
   return (
       <DropdownMenu>
         <DropdownMenuTrigger>
-        <Avatar className="w-20 h-20 md:w-10 md:h-10" >
-           <AvatarImage src="https://github.com/shadcn.png" />
+        <Avatar className="w-20 h-20 md:w-10 md:h-10" >         
+            <AvatarImage src={user.image ? (user.image) :"https://github.com/shadcn.png"} />  
            <AvatarFallback>{user?.name}</AvatarFallback>
            </Avatar>
         </DropdownMenuTrigger>
@@ -52,7 +52,9 @@ const UserProfileBox = ({userFromProps}:{userFromProps:User}) => {
               {user?.name}
             </h1> 
             <p className="text-sm font-normal text-neutral-400">
-              {user?.email}
+              {user?.email}<br/>
+              id: {user.id}<br/>
+              image: {user.image}
             </p> 
           </DropdownMenuLabel>
           <DropdownMenuSeparator className="bg-neutral-600"/>

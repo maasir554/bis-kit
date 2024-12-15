@@ -45,6 +45,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                   id: true,
                   email: true,
                   name: true,
+                  profilepiclink:true,
                   password: true  // Including password field explicitly
                 }
               });
@@ -57,7 +58,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
             if (!isMatch) throw new CredentialsSignin("Email and password does not match.")
         
-            else return {name:user.name, email: user.email, id: user.id};
+            else return {name:user.name, email: user.email, id: user.id, image: user.profilepiclink};
             }
     }),
 ],
@@ -76,6 +77,16 @@ callbacks: {
           where: { email: user.email }
         })
       
+        if(existingUser){
+          await prisma.user.update({
+            where:{
+              id:existingUser.id
+            },
+            data:{
+              profilepiclink:user.image
+            }
+          })
+        }
         
         if (!existingUser) {
           await prisma.user.create({
@@ -87,6 +98,8 @@ callbacks: {
             }
           })
         }
+
+
         return true
       } catch (error) {
         console.error("Error saving user:", error)
@@ -95,7 +108,25 @@ callbacks: {
     }
     return true
   },
+  async jwt({token, user}){
+    if(user) {
+      token.userId = user.id
+      token.profilepic= user.image;
+      }
+      return token;
+    },
 
-},
+    async session({session,token}){
+      const id = token.userId as string;
+      const image = token.profilepic as string;
+      session.user.id = id;
+      session.user.image = image;
+
+      return session
+    },
+  },
+  // session:{
+  //   strategy:"jwt"
+  // }
 
 })

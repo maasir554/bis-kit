@@ -11,7 +11,6 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
-
 import Link from "next/link";
 import { LoginForm } from "./LoginForm";
 // because we want to work with client dynamically programmed components like toasts.
@@ -33,7 +32,6 @@ const Page = () => {
                     <p className="w-full text-center">or</p>
                     <form action={    
                                     async () => {
-
                                         await signIn("google", {redirect:true,redirectTo:"/"});
                                     }
                                 } className="w-full">
