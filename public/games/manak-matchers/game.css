@@ -1,0 +1,673 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+   margin:0;
+   padding:0;
+   box-sizing : border-box;
+   font-family: 'Poppins', sans-serif;
+   color: rgb(255, 255, 255);
+}
+
+
+input,
+textarea,
+button,
+select,
+a {
+   -webkit-tap-highlight-color: transparent;
+}
+
+:root{
+   --bg-color-one:rgb(0, 22, 31);
+   --bg-color-two:rgb(0, 18, 26);
+   --common-ancestor-font-size : 16px; 
+   --game-mg-top: 5px;
+   --game-card-width:75px; /*150*/
+   --button-outline : 2.5px; /*5*/
+   --grid-size : 1fr 1fr 1fr 1fr; /* default size will be 4x4*/
+   --grid-gutters: 5px;
+   --menu-bg : rgba(18, 32, 54, 0.4);
+   --card-circle-border :2px solid rgb(255, 255, 255);
+   --top-nav-height :35px;
+   --bottom-footer-template-columns : 1fr 20fr 2.5fr 1fr 1fr;
+}
+
+/*  
+--common-ancestor-font-size is used as a reference of `em`
+unit of font-size.
+1em = 1 x font-size of `body`
+h1 , h2 , ... are also using `em` units.
+they are prodefine in the browser. 
+*/
+
+body, html{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: flex-start;
+   background-color: var(--bg-color-one);
+   width: 100%;
+   min-height: 100vh;
+   font-size: var(--common-ancestor-font-size);
+}
+
+body{
+   justify-content: space-between;
+   /* min-height: 110vh; */
+}
+
+.gamesection{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   height: auto;
+}
+
+.f-r{
+   display: flex;
+   flex-direction: row;
+}
+
+.f-c{
+   display: flex;
+   flex-direction: column;
+}
+
+.alg-c{
+   align-items: center;
+}
+.jst-c{
+   justify-content: center;
+}
+
+
+main{
+   /* padding: var(--game-mg-top); */
+   width: 100%;
+}
+
+
+#game{
+   width: auto;
+   background-color: var(--menu-bg);
+   height: auto;
+   margin-top: var(--game-mg-top);
+   border-radius: var(--game-mg-top); 
+   display: grid;
+   grid-template-columns: var(--grid-size) ;
+   grid-template-rows: var(--grid-size);
+   padding: var(--game-mg-top);
+   position: relative;
+}
+
+/* Card Detailing begins here...*/
+.card{
+   width: var(--game-card-width);
+   height: var(--game-card-width);
+   background-color: var(--bg-color-two);
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin: var(--grid-gutters);
+}
+
+
+.card:hover{
+   border: var(--game-card-border) solid white;
+}
+
+.card{
+   cursor: pointer;
+}
+
+.card:focus{
+   transition: 0.1s;
+   border-radius: 0%;
+}
+
+.card:active{
+   transform: scale(0.975);
+}
+
+.sides-encloser{
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   top:0;
+   left: 0;
+   transform-style: preserve-3d;
+   transition: transform 0.5s;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.front, .back{
+   width: 100%;
+   backface-visibility: hidden;
+   position: absolute;
+   top:0;
+   left:0;
+   border: var(--card-circle-border);
+   perspective: 100px;
+}
+
+.back{
+   transform:rotateY(180deg);
+}
+
+
+.bottom-footer{
+   display : grid;
+   grid-template-columns: var(--bottom-footer-template-columns);
+   background-color: #0008ff1e;
+   width: 100%;
+   height: auto;
+   font-size: 0.75em;
+   justify-content: center;
+   padding: 7.5px 20px;
+}
+
+.bottom-footer > p {
+   color: rgb(255, 255, 255);
+   justify-content: flex-end;
+   margin-right: 5px;
+   display: inline-flex;
+}
+
+.bottom-footer > span{
+   display: flex;
+   align-items: center;
+   justify-content: flex-end;
+   margin-right: 2.5px;
+}
+
+
+/* Stylings for Top Nav Bar */
+
+
+
+
+#top-nav{
+   width:100%;
+   height:var(--top-nav-height);
+   background-color: #0008ff1e;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: space-evenly;
+   padding-left: 7.5px;
+   padding-right : 7.5px;
+}
+
+.navigation-icon{
+   width:20px;
+   height: 20px;
+   fill:rgb(255, 255, 255);
+   opacity: 0.65;
+   margin-right: 7.5px;
+}
+.navigation-icon:hover{
+   cursor : pointer;
+   opacity: 1;
+}
+#brand-logo{
+   width:20px;
+   height: 20px;
+   fill:rgb(188, 255, 249);
+   margin-right:5px;
+}
+
+#branding{
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;    
+}
+#branding > p{
+   font-weight: bold;
+   color: rgb(255, 255, 255);
+   -webkit-user-select: none; /* Safari */
+   -ms-user-select: none; /* IE 10 and IE 11 */
+   user-select: none; /* Standard syntax */
+   font-size: 20px;
+}
+.nav-button-group{
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: center;
+   position: relative;
+}
+
+:root{
+   --instructions-display  : none; /* or block*/
+   --settings-display : none; /*or  or grid*/
+
+}
+#instructions{
+   z-index: 999;
+   width:95vw;
+   max-width: 300px;
+   height: auto;
+   background-color: var(--bg-color-two);
+   border: 2px solid rgb(0, 255, 213);
+   border-radius: 10px;
+   position:absolute;
+   top: 30px;
+   right: 0;
+   padding : 10px;
+   box-shadow: -2.5px 2.5px 15px 1px rgb(255, 255, 255) ;
+   display:var(--instructions-display)
+}
+
+#instructions > p, #instructions > h3  {
+   line-height: 1.25em;
+   margin-bottom: 10px;
+}
+
+#settings {
+   z-index: 999;
+   width:95vw;
+   max-width: 300px;
+   height: auto;
+   background-color: var(--bg-color-two);
+   border: 2px solid rgb(185, 255, 243);
+   border-radius: 10px;
+   position:absolute;
+   top: 30px;
+   right: 0;
+   padding : 10px;
+   display:var(--settings-display);
+   grid-template-columns: 3fr 1fr;
+   box-shadow: -2.5px 2.5px 15px 1px rgba(125, 233, 233, 0.521) ;
+}
+
+#settings > h3 {
+   grid-column-start: 1;
+   grid-column-end: 3;
+}
+
+/* Styling for Score Strip : */
+
+#score-strip {
+   width: 100%;
+   font-size: 1em;
+   align-items: center;
+   justify-content: center;
+   padding-left: 15px;
+   padding-top: 5px;
+}
+#score-strip  p {
+   margin-right: 10px;
+   color :rgb(25, 237, 237);
+   font-weight: bold;
+}
+#top-encloser{
+   width: 100%;
+}
+
+@keyframes pop {
+    0%{
+        transform:scale(1);
+    }
+    25%{
+        transform:scale(0.75);
+    }
+    50%{
+        transform: scale(1.25);
+    }
+    100%{
+        transform:scale(1);
+    }
+
+}
+
+@keyframes rainbow{
+    0%{border-color: rgb(144 238 144);}
+    20%{border-color: #fff783;}
+    40%{border-color: #ffb2b2;}
+    60%{border-color:#bd82f5;}
+    80%{border-color: #798dff;}
+    100%{border-color:#7de1ff ;}
+}
+
+@keyframes popup {
+    0%{
+    position: absolute;
+    top : 0%;
+    left:50%;
+    transform: translate3D(-50%,-50%,-500px) scale(0.25) rotateX(90deg);
+    background-color: black;
+    border-radius:1000px ;
+    }
+   
+    100%{
+     position: absolute;
+     transform: translate3D(-50%,-50%,0px) scale(1) rotateX(0deg);
+     opacity: 1;
+}
+}
+
+:root{
+    --game-info-width : 95%;
+    --game-info-min-height : 0px;
+    --gi-spacing : 5px;
+    --gi-moves-consumed-color : rgb(0, 252, 0);
+    --menu-btn-primary :rgb(65, 177, 0) ;
+    --menu-btn-secondary :rgb(73, 199, 0);
+    --menu-btn-tertiary : rgb(59, 161, 0); 
+    --menu-padding :10px;
+    --menu-info-detail-font-size:1.15em;
+    
+}
+
+#game-info{
+    min-height: var(--game-info-min-height);
+    margin : var(--game-card-border);
+    background-color: var(--menu-bg);
+    border: var(--game-card-border) solid transparent;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: var(--menu-padding);
+    gap: var(--gi-spacing);
+    align-items: center;
+    width: var(--game-info-width);
+    max-width: 700px;
+
+}
+
+.gi-box{
+    background-color: rgba(0, 85, 85, 0.082);
+    justify-content: space-around;
+}
+.gi-box > h5 {
+    color: rgb(196, 255, 255);
+}
+#moves-consumed{
+    font-size: var(--menu-info-detail-font-size);
+    color: var(--gi-moves-consumed-color);
+    font-weight: bold;
+    margin : calc(var(--gi-spacing)*2) 0;
+}
+#elapsed-time{
+    font-size: var(--menu-info-detail-font-size);
+    font-weight: bold;
+    margin : calc(var(--gi-spacing)*2) 0;
+}
+
+/*
+menu-btn will be used for control buttons like play /pause / resume
+*/
+.menu-btn{
+    min-width: 5em;
+    background-color: var(--menu-btn-primary);
+    padding :calc(var(--gi-spacing)/5) calc(var(--gi-spacing)*2) ;
+    margin : calc(var(--gi-spacing)*2) 0;
+    border-radius : calc(var(--gi-spacing)*2);
+    border: none;
+    cursor: pointer;
+    font-size: var(--menu-info-detail-font-size);
+    width : auto;
+    color : white;
+    /* text-shadow: 0 0 1.5px black; */
+}
+
+.menu-btn:hover{
+    background-color: var(--menu-btn-secondary);
+}
+.menu-btn:active{
+    transform: scale(0.975);
+    background-color: var(--menu-btn-tertiary);
+}
+
+
+/*
+link-btn will be used for buttons with website links :-
+*/
+.link-btn {
+    background-color: rgba(0, 255, 255, 0.192);
+    padding :calc(var(--gi-spacing)/1.5) calc(var(--gi-spacing)*2) ;
+    border-radius : calc(var(--gi-spacing)*2 );
+    border: calc(var(--gi-spacing)/2) solid rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+    font-size: 1.25em;
+    width : auto
+}
+
+.link-btn:hover{
+    background-color: rgba(0, 255, 255, 0.308);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* keeping `:focus` above `:active` is VERY important !!*/
+.link-btn:focus{
+    transition : 0.1s;
+    border-color:white ;
+    border-style: dashed;
+    outline: calc(var(--gi-spacing)) solid rgba(0, 153, 255, 0.5);
+    border-radius:0% ;
+    background-color: rgba(0, 255, 255, 0.308);
+}
+.link-btn:active{
+    border-radius : 100px;
+    transform: scale(0.95);
+    background-color: rgba(0, 117, 117, 0.308);
+
+}
+
+/* For very small screens, like smart watch. */
+@media only screen and (min-width :0px) and (max-width:275px) {
+    :root{
+        --common-ancestor-font-size : 8px;
+        --gi-spacing : 1.0px;
+        --game-card-width :21vw;
+        --card-circle-border :0.5px solid rgb(255, 255, 255);
+        --menu-padding : 1.5px;
+        --game-info-min-height : 0px;
+        --grid-gutters:1.5px;
+        --game-mg-top : 2.5px;
+        --top-nav-height :25px;
+        --game-card-border :1px;
+        --top-nav-height : 50px;
+    }
+    .bottom-footer > p{
+        display: none;
+    }
+    #GH-download-btn{
+        display: none;
+    }
+    #GH-fork-btn{
+        display: none;
+    }
+}
+
+
+
+/* For Small-Sized mobile phones :- */
+
+@media only screen and (min-width :275px) and (max-width:372px){
+    :root{
+        --common-ancestor-font-size : 10px;
+        --gi-spacing : 5px;
+        --game-card-width :20vw;
+        --game-mg-top : 2px;
+        --top-nav-height : 30px;
+        --button-outline : 5px;
+        --game-card-border:5px;
+        --grid-gutters:5px;
+        --card-circle-border :2px solid rgb(255, 255, 255);
+        --bottom-footer-template-columns : 20fr 2.5fr 1fr ;
+    }
+    .bottom-footer > p{
+        display: none;
+    }
+    #GH-download-btn{
+        display: none;
+    }
+}
+
+/* For Medium-Sized mobile phones :-*/
+@media only screen and (min-width :372px) and (max-width:535px){
+    
+    :root{
+        --common-ancestor-font-size : 12px;
+        --gi-spacing : 5px;
+        --game-card-width :22vw;
+        --game-mg-top : 2px;
+        --top-nav-height : 30px;
+        --button-outline : 5px;
+        --game-card-border:5px;
+        --grid-gutters:5px;
+        --card-circle-border :2px solid rgb(255, 255, 255);
+        --bottom-footer-template-columns : 20fr 2.5fr 1fr ;
+    }
+    .bottom-footer > p{
+        font-size: 10px;
+        justify-content: flex-start;
+    }
+    #GH-download-btn{
+        display: none;
+    }
+    #GH-fork-btn{
+        display: none;
+    }
+}
+
+/*For tablets :*/
+@media only screen and (min-width : 535px) and (max-width:655px){
+
+    :root{
+        --common-ancestor-font-size : 16px;
+        --gi-spacing : 5px;
+        --game-card-width :15vh;
+        --game-mg-top : 2px;
+        --top-nav-height : 30px;
+        --button-outline : 5px;
+        --game-card-border:5px;
+        --grid-gutters:5px;
+        --card-circle-border :2px solid rgb(255, 255, 255);
+    }
+
+}
+
+/* For desktops / laptops */
+@media only screen and (min-width : 655px) and (max-width:1440px){
+
+    :root{
+        --common-ancestor-font-size : 16px;
+        --gi-spacing : 5px;
+        --game-card-width :15vh;
+        --game-mg-top : 2px;
+        --top-nav-height : 30px;
+        --button-outline : 5px;
+        --game-card-border:5px;
+        --grid-gutters:5px;
+        --card-circle-border :2px solid rgb(255, 255, 255);
+    }
+
+}
+@media only screen and (min-width:1440px) and (max-width:2000px){
+    :root{
+        --common-ancestor-font-size : 16px;
+        --gi-spacing : 5px;
+        --game-card-width :15vh;
+        --game-mg-top : 2px;
+        --top-nav-height : 50px;
+        --button-outline : 5px;
+        --game-card-border:5px;
+        --grid-gutters:5px;
+        --card-circle-border :2px solid rgb(255, 255, 255);
+    }
+
+}
+:root{
+    --victory-box-height :300px;
+    --victory-box-padding : 20px;
+    --victory-box-border-radius : 15px;
+    --victory-box-display-switch : none; /* or FLEX */
+    --overlay-display-switch : none; /* or BLOCK*/ 
+}
+
+#victory-box{
+    z-index:75;
+    display: var(--victory-box-display-switch);
+    background-color: rgb(69, 189, 0);
+    position: fixed;
+    top : 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width: calc(100% - 30px);
+    max-width : 500px;
+    min-height : var(--victory-box-height);
+    padding : var(--victory-box-padding);
+    border-radius: var(--victory-box-border-radius);
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    animation:popup 0.35s cubic-bezier(0.6, 0.22, 0.65, 0.4) 1;
+}
+#victory-box-close-button {
+    width: 30px;
+    fill: rgb(255, 255, 255);
+    border-radius: 100px;
+    padding : 5px
+}
+#victory-box-close-button:hover{
+    background-color: white;
+    cursor: pointer;
+    fill: rgb(69, 189, 0);
+    border: none;
+}
+
+
+#victory-box > nav{
+    width: 100%;
+    display :flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content:flex-end;
+}
+
+#victory-box-info{
+    height: 50%
+}
+
+#victory-box-info > h1 {
+    font-size: 1.75em;
+    margin-bottom: 20px;
+}
+#victory-box-info > p {
+    line-height: 40px;
+    font-size: 1.15em;
+    margin-bottom: 10px;
+} 
+#victory-box-info span{
+    padding: 0px 5px;
+    color: rgb(0 66 151);;
+    font-weight: bold;
+    font-size: 1.5rem; /* rem unit is relative to parent font size..*/
+    border-bottom: 5px dashed rgb(0 66 151);
+}
+
+#score{
+    color:gold !important;
+ }
+
+/* -------------- OVERLAY --------------- */
+
+#overlay{
+    display: var(--overlay-display-switch);
+    z-index:50;
+    top : 0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-backdrop-filter : blur(5px);
+    backdrop-filter : blur(5px);
+    position:fixed;
+}

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="stylesheets/ui-main.css" />
+    <link rel="stylesheet" href="stylesheets/animations.css" />
+    <link rel="stylesheet" href="stylesheets/menus.css" />
+    <link rel="stylesheet" href="stylesheets/mediaqueries.css" />
+    <link rel="stylesheet" href="stylesheets/dialogueboxes.css" /> -->
+    <link rel="stylesheet" href="game.css">
+    <!-- for GitHub Star button :- -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>Maanak Matchers</title>
+  </head>
+  <body>
+    <section id="top-encloser">
+      <nav id="top-nav" class="f-r">
+        <span id="branding">
+          <!-- logo -->
+          <svg
+            id="brand-logo"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            fill="#ffffff"
+            height="800px"
+            width="800px"
+            version="1.1"
+            viewBox="0 0 32 32"
+            xml:space="preserve"
+            stroke="#ffffff"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M28.7,16l-4.2-4.2c-0.4-0.4-1-0.4-1.4,0l-0.7,0.7c-0.8,0.8-2,0.8-2.8,0c-0.8-0.8-0.8-2,0-2.8l0.7-0.7c0.4-0.4,0.4-1,0-1.4 L16,3.3c-0.4-0.4-1-0.4-1.4,0l-2.8,2.8h0C11,5.3,10,4.9,8.9,4.9c-1.1,0-2.1,0.4-2.8,1.2S4.9,7.9,4.9,8.9c0,1.1,0.4,2.1,1.2,2.8l0,0 l-2.8,2.8c-0.4,0.4-0.4,1,0,1.4l4.2,4.2c0.4,0.4,1,0.4,1.4,0l0.7-0.7c0.8-0.8,2-0.8,2.8,0c0.8,0.8,0.8,2,0,2.8l-0.7,0.7 c-0.4,0.4-0.4,1,0,1.4l4.2,4.2c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l2.8-2.8h0c0.8,0.8,1.8,1.2,2.8,1.2c1.1,0,2.1-0.4,2.8-1.2 s1.2-1.8,1.2-2.8c0-1.1-0.4-2.1-1.2-2.8l0,0l2.8-2.8C29.1,17,29.1,16.4,28.7,16z"
+              />
+            </g>
+          </svg>
+          <p>Maanak Matchers</p>
+        </span>
+
+        <div class="nav-button-group">
+          <!-- info icon -->
+          <svg
+            id="instruction-button"
+            class="navigation-icon"
+            fill="#000000"
+            width="800px"
+            height="800px"
+            viewBox="0 0 1920 1920"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M960 0c530.193 0 960 429.807 960 960s-429.807 960-960 960S0 1490.193 0 960 429.807 0 960 0Zm0 101.053c-474.384 0-858.947 384.563-858.947 858.947S485.616 1818.947 960 1818.947 1818.947 1434.384 1818.947 960 1434.384 101.053 960 101.053Zm-42.074 626.795c-85.075 39.632-157.432 107.975-229.844 207.898-10.327 14.249-10.744 22.907-.135 30.565 7.458 5.384 11.792 3.662 22.656-7.928 1.453-1.562 1.453-1.562 2.94-3.174 9.391-10.17 16.956-18.8 33.115-37.565 53.392-62.005 79.472-87.526 120.003-110.867 35.075-20.198 65.9 9.485 60.03 47.471-1.647 10.664-4.483 18.534-11.791 35.432-2.907 6.722-4.133 9.646-5.496 13.23-13.173 34.63-24.269 63.518-47.519 123.85l-1.112 2.886c-7.03 18.242-7.03 18.242-14.053 36.48-30.45 79.138-48.927 127.666-67.991 178.988l-1.118 3.008a10180.575 10180.575 0 0 0-10.189 27.469c-21.844 59.238-34.337 97.729-43.838 138.668-1.484 6.37-1.484 6.37-2.988 12.845-5.353 23.158-8.218 38.081-9.82 53.42-2.77 26.522-.543 48.24 7.792 66.493 9.432 20.655 29.697 35.43 52.819 38.786 38.518 5.592 75.683 5.194 107.515-2.048 17.914-4.073 35.638-9.405 53.03-15.942 50.352-18.932 98.861-48.472 145.846-87.52 41.11-34.26 80.008-76 120.788-127.872 3.555-4.492 3.555-4.492 7.098-8.976 12.318-15.707 18.352-25.908 20.605-36.683 2.45-11.698-7.439-23.554-15.343-19.587-3.907 1.96-7.993 6.018-14.22 13.872-4.454 5.715-6.875 8.77-9.298 11.514-9.671 10.95-19.883 22.157-30.947 33.998-18.241 19.513-36.775 38.608-63.656 65.789-13.69 13.844-30.908 25.947-49.42 35.046-29.63 14.559-56.358-3.792-53.148-36.635 2.118-21.681 7.37-44.096 15.224-65.767 17.156-47.367 31.183-85.659 62.216-170.048 13.459-36.6 19.27-52.41 26.528-72.201 21.518-58.652 38.696-105.868 55.04-151.425 20.19-56.275 31.596-98.224 36.877-141.543 3.987-32.673-5.103-63.922-25.834-85.405-22.986-23.816-55.68-34.787-96.399-34.305-45.053.535-97.607 15.256-145.963 37.783Zm308.381-388.422c-80.963-31.5-178.114 22.616-194.382 108.33-11.795 62.124 11.412 115.76 58.78 138.225 93.898 44.531 206.587-26.823 206.592-130.826.005-57.855-24.705-97.718-70.99-115.729Z"
+              fill-rule="evenodd"
+            />
+          </svg>
+          <!-- Instructions box -->
+          <div id="instructions">
+            <h3>Instructions :</h3>
+            <p>Click on the cards to turn them.</p>
+            <p>You can open only open 2 cards simultaneously.</p>
+            <p>if you open two cards with with corresponding standard and image representing it, then they get paired.</p>
+            <p>Higher score will be awarded for consuming less moves and in less time</p>
+            <p>Pair all the cards and win!</p>
+            <button
+              type="button"
+              class="link-btn"
+              id="instructions-close-button"
+            >
+              Okay
+            </button>
+          </div>
+          <!-- Settings Icon -->
+          <svg
+            id="settings-button"
+            class="navigation-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="129px"
+            height="129px"
+            viewBox="0 0 24.00 24.00"
+            fill="none"
+            stroke="#ffffff"
+            stroke-width="0.00024000000000000003"
+            transform="matrix(-1, 0, 0, 1, 0, 0)rotate(0)"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+
+            <g id="SVGRepo_iconCarrier">
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M12.0002 8C9.79111 8 8.00024 9.79086 8.00024 12C8.00024 14.2091 9.79111 16 12.0002 16C14.2094 16 16.0002 14.2091 16.0002 12C16.0002 9.79086 14.2094 8 12.0002 8ZM10.0002 12C10.0002 10.8954 10.8957 10 12.0002 10C13.1048 10 14.0002 10.8954 14.0002 12C14.0002 13.1046 13.1048 14 12.0002 14C10.8957 14 10.0002 13.1046 10.0002 12Z"
+                fill="#ffffff"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M11.2867 0.5C9.88583 0.5 8.6461 1.46745 8.37171 2.85605L8.29264 3.25622C8.10489 4.20638 7.06195 4.83059 6.04511 4.48813L5.64825 4.35447C4.32246 3.90796 2.83873 4.42968 2.11836 5.63933L1.40492 6.83735C0.67773 8.05846 0.954349 9.60487 2.03927 10.5142L2.35714 10.7806C3.12939 11.4279 3.12939 12.5721 2.35714 13.2194L2.03927 13.4858C0.954349 14.3951 0.67773 15.9415 1.40492 17.1626L2.11833 18.3606C2.83872 19.5703 4.3225 20.092 5.64831 19.6455L6.04506 19.5118C7.06191 19.1693 8.1049 19.7935 8.29264 20.7437L8.37172 21.1439C8.6461 22.5325 9.88584 23.5 11.2867 23.5H12.7136C14.1146 23.5 15.3543 22.5325 15.6287 21.1438L15.7077 20.7438C15.8954 19.7936 16.9384 19.1693 17.9553 19.5118L18.3521 19.6455C19.6779 20.092 21.1617 19.5703 21.8821 18.3606L22.5955 17.1627C23.3227 15.9416 23.046 14.3951 21.9611 13.4858L21.6432 13.2194C20.8709 12.5722 20.8709 11.4278 21.6432 10.7806L21.9611 10.5142C23.046 9.60489 23.3227 8.05845 22.5955 6.83732L21.8821 5.63932C21.1617 4.42968 19.678 3.90795 18.3522 4.35444L17.9552 4.48814C16.9384 4.83059 15.8954 4.20634 15.7077 3.25617L15.6287 2.85616C15.3543 1.46751 14.1146 0.5 12.7136 0.5H11.2867ZM10.3338 3.24375C10.4149 2.83334 10.7983 2.5 11.2867 2.5H12.7136C13.2021 2.5 13.5855 2.83336 13.6666 3.24378L13.7456 3.64379C14.1791 5.83811 16.4909 7.09167 18.5935 6.38353L18.9905 6.24984C19.4495 6.09527 19.9394 6.28595 20.1637 6.66264L20.8771 7.86064C21.0946 8.22587 21.0208 8.69271 20.6764 8.98135L20.3586 9.24773C18.6325 10.6943 18.6325 13.3057 20.3586 14.7523L20.6764 15.0186C21.0208 15.3073 21.0946 15.7741 20.8771 16.1394L20.1637 17.3373C19.9394 17.714 19.4495 17.9047 18.9905 17.7501L18.5936 17.6164C16.4909 16.9082 14.1791 18.1618 13.7456 20.3562L13.6666 20.7562C13.5855 21.1666 13.2021 21.5 12.7136 21.5H11.2867C10.7983 21.5 10.4149 21.1667 10.3338 20.7562L10.2547 20.356C9.82113 18.1617 7.50931 16.9082 5.40665 17.6165L5.0099 17.7501C4.55092 17.9047 4.06104 17.714 3.83671 17.3373L3.1233 16.1393C2.9058 15.7741 2.97959 15.3073 3.32398 15.0186L3.64185 14.7522C5.36782 13.3056 5.36781 10.6944 3.64185 9.24779L3.32398 8.98137C2.97959 8.69273 2.9058 8.2259 3.1233 7.86067L3.83674 6.66266C4.06106 6.28596 4.55093 6.09528 5.0099 6.24986L5.40676 6.38352C7.50938 7.09166 9.82112 5.83819 10.2547 3.64392L10.3338 3.24375Z"
+                fill="#ffffff"
+              />
+            </g>
+          </svg>
+          <!-- Settings box -->
+          <div id="settings">
+            <!--  -->
+            <h3>Settings</h3>
+            <!--  -->
+            <p>Grid Size :</p>
+            <span> 4 x 4</span>
+            <!--  -->
+            <p>Theme :</p>
+            <span> Neon </span>
+            <!--  -->
+            <div></div>
+            <button class="link-btn" id="settings-close-button">Okay</button>
+          </div>
+        </div>
+      </nav>
+      
+    </section>
+    <section id="gamesection">
+      <main class="f-c alg-c">
+        <div id="game">
+          <!-- the #game will be populated using data.js -->
+          <!-- the below button will be erased be the script -->
+          <!-- But I am still keeping it as a reference... -->
+          <button type="button" class="card" data-image="angryface">
+            <div class="sides-encloser">
+              <!-- <img alt="emoji" src="assets/QuestionMark4.png" class="front" /> -->
+              <!-- <img src="assets/angryface.png" alt="emoji" class="back" /> -->
+            </div>
+          </button>
+        </div>
+        <div id="score-strip" class="f-r">
+          <p>HIGH SCORE : <span id="high-score-box">0</span></p>
+          <p>CURRENT SCORE : <span id="current-score-box">0</span></p>
+        </div>
+        <section id="game-info">
+          <div class="gi-box f-c">
+            <h5>Moves Consumed :</h5>
+            <span id="moves-consumed"> 0 </span>
+          </div>
+          <div class="gi-box f-c" id="clock">
+            <h5>Elapsed Time :</h5>
+            <span id="elapsed-time"> 0:00 </span>
+          </div>
+          <div class="gi-box f-c">
+            <h5 id="game-status">Click to play :</h5>
+            <button type="button" class="menu-btn f-r jst-c alg-c" id="play">
+              Play
+            </button>
+          </div>
+        </section>
+
+        <!-- DIALOGUE BOX FOR INDICATING GAME COMPLETION: -->
+        <section id="victory-box">
+          <nav>
+            <svg
+              id="victory-box-close-button"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 1024 1024"
+              version="1.1"
+            >
+              <path
+                d="M810.65984 170.65984q18.3296 0 30.49472 12.16512t12.16512 30.49472q0 18.00192-12.32896 30.33088l-268.67712 268.32896 268.67712 268.32896q12.32896 12.32896 12.32896 30.33088 0 18.3296-12.16512 30.49472t-30.49472 12.16512q-18.00192 0-30.33088-12.32896l-268.32896-268.67712-268.32896 268.67712q-12.32896 12.32896-30.33088 12.32896-18.3296 0-30.49472-12.16512t-12.16512-30.49472q0-18.00192 12.32896-30.33088l268.67712-268.32896-268.67712-268.32896q-12.32896-12.32896-12.32896-30.33088 0-18.3296 12.16512-30.49472t30.49472-12.16512q18.00192 0 30.33088 12.32896l268.32896 268.67712 268.32896-268.67712q12.32896-12.32896 30.33088-12.32896z"
+              />
+            </svg>
+          </nav>
+          <div id="victory-box-info">
+            <h1>&#127881; Game Completed! &#127881;</h1>
+            <p>
+              you solved the game in
+              <span id="time-of-completion">1:30</span> minutes , consuming
+              <span id="moves-of-completion">50</span> moves.
+            </p>
+            <p>Your score is : <span id="score">1200</span></p>
+          </div>
+          <button
+            type="button"
+            class="link-btn f-r jst-c alg-c"
+            id="close-victory-box"
+          >
+            Close
+          </button>
+        </section>
+        <div id="overlay"></div>
+      </main>
+    </section>
+    <footer class="bottom-footer">
+      <!-- Made by .. paragraph -->
+      <p class="f-r alg-c">BISKit</p>
+    </footer>
+
+    <!-- Imoprting JS files in order is VERY important. -->
+    <!-- first data should be populated because that will be used by app.js -->
+    <!-- <script src="app/data.js"></script> -->
+    <!-- menus.js contains te logic of play button : -->
+    <!-- <script src="app/menus.js"></script> -->
+    <!-- styler.js will also be used in app.js-->
+    <!-- <script src="app/styler.js"></script> -->
+    <!-- JS file clock : -->
+    <!-- <script src="app/clock.js"></script> -->
+    <!-- finally... :-) -->
+    <!-- <script src="app/app.js"></script> -->
+
+    <script src="game.js"></script>
+
+  </body>
+</html>
