@@ -8,7 +8,6 @@ import {
 
 import { Button } from "@/components/ui/button"
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { signIn } from "@/auth"; //server version of signIn
 import { SignupForm } from "./SignupForm";
 
