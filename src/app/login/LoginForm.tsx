@@ -1,18 +1,12 @@
-// "use server"
-
-// import { useRouter } from "next/router"
-import { redirect} from "next/navigation"
+"use client"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-// import { loginFormAction } from "./login"
 import { credentialsLogin } from "@/actions/login"
 import { toast } from "sonner"
 
 
 export const LoginForm = () =>
     {
-    // const router = useRouter()
-
     return <form 
             className="flex flex-col gap-4"
             action={

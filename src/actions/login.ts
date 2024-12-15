@@ -15,7 +15,7 @@ const credentialsLogin = async (email:string, password:string) => {
         });
     }
     catch(error){
-        console.log(error);
+        // console.log(error);
         const err = error as CredentialsSignin;
         return err;
     }
