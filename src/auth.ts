@@ -108,7 +108,18 @@ callbacks: {
     }
     return true
   },
-  async jwt({token, user}){
+  async jwt({token, user, account, profile}){
+    
+    if(account?.provider === "google"){
+      const userFromDb = await prisma.user.findUnique({
+        where: { email: profile?.email as string },
+      });
+
+      token.userId = userFromDb?.id;
+      token.profilepic = user.image;
+      return token;
+    }
+
     if(user) {
       token.userId = user.id
       token.profilepic= user.image;

@@ -54,7 +54,7 @@ const UserProfileBox = ({userFromProps}:{userFromProps:User}) => {
             <p className="text-sm font-normal text-neutral-400">
               {user?.email}<br/>
               id: {user.id}<br/>
-              image: {user.image}
+              {/* image: {user.image} */}
             </p> 
           </DropdownMenuLabel>
           <DropdownMenuSeparator className="bg-neutral-600"/>

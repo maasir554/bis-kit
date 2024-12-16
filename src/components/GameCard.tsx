@@ -66,7 +66,7 @@ export const GameCard = ({heading, description, imgLink, instructions, className
                                 <h2 className="text-lg font-semibold mb-3 text-themeblue" >
                                     Instructions:
                                 </h2>
-                                <ol className="pl-4">
+                                <ol className="pl-4 text-sm">
                                     {/* <li className=" flex flex-row gap-2 mb-1"><span className="h-full text-themeorange">1.</span> <span>click the cards to flip them</span> </li>
                                     <li className=" flex flex-row gap-2 mb-1"><span className="h-full text-themeorange">2.</span> <span>Match the image to the correspoding standard by identifying the name</span> </li>
                                     <li className=" flex flex-row gap-2 mb-1"><span className="h-full text-themeorange">3.</span> <span>Higher Score will be awarded if you complete the game in less amount of time and consuming less number of moves.</span> </li> */}

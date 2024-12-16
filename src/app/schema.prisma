@@ -9,9 +9,32 @@ generator client {
 }
 
 model User {
-  id      String   @id @default(auto()) @map("_id") @db.ObjectId
-  email   String   @unique
-  name    String
-  password String?
-  profilepiclink String?
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  email           String   @unique
+  name            String
+  password        String?
+  profilepiclink  String?
+  currentPoints   Int @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime? @updatedAt
+  pointsRecord    Point[] 
+}
+
+model Point{
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  value         Int @default(0)
+  scoredAt      DateTime @default(now())
+  userId        String @db.ObjectId
+  gameId        String @db.ObjectId
+  earnedBy      User @relation(fields: [userId], references: [id])
+  earnedInGame  Game @relation(fields: [gameId], references: [id])
+}
+
+model Game{
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  name         String 
+  createdAt    DateTime @default(now())
+  highestScore Int @default(0)
+  playedBy     Int @default(0)
+  points       Point[]
 }
