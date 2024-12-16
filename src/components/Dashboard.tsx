@@ -55,7 +55,7 @@ export const DashBoard = ({user}:DashboardProps) => {
                                         imgLink={game.imgLink}
                                         instructions={game.instructions}
                                         key={idx}
-                                        className={"lg:max-w-full min-h-[350px] justify-around md:min-h-[390px]  lg:w-full min-w-0 w-[95%] sm:min-w-[190px] lg:min-w-0 sm:w-[30%]"}
+                                        className={"lg:max-w-full min-h-[350px] justify-around md:min-h-[390px]  lg:w-full min-w-0 w-[95%] max-w-[350px] sm:min-w-[190px] lg:min-w-0 sm:w-[30%]"}
                                     />
                                 )
                             )

@@ -2,6 +2,7 @@
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import { useState, useEffect } from "react"
+import { Skeleton } from "@/components/ui/skeleton"
 
 export const StandardOfTheDay = () => {
     
@@ -33,9 +34,14 @@ export const StandardOfTheDay = () => {
                 {
                     loading
                     ? 
-                    <h1>
-                        Loading...
-                    </h1>
+                    <span className="opacity-30">
+                        {/* Loading... */}
+                        <Skeleton className="w-1/2 h-[50px] rounded-xl mb-5 bg-opacity-10 " />
+                        <Skeleton className="w-1/2 h-[20px] rounded-xl mb-5  bg-opacity-10 " />
+                        <Skeleton className="w-full h-[20px] rounded-xl mb-5  bg-opacity-10 " />
+                        <Skeleton className="w-full h-[20px] rounded-xl mb-5  bg-opacity-10 " />
+                        <Skeleton className="w-1/4 h-[50px] rounded-xl mb-5  bg-opacity-10 " />
+                    </span>
                     :
                     standard?
                     <>

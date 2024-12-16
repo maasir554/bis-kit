@@ -42,7 +42,7 @@ const UserProfileBox = ({userFromProps}:{userFromProps:User}) => {
       <DropdownMenu>
         <DropdownMenuTrigger>
         <Avatar className="w-20 h-20 md:w-10 md:h-10" >         
-            <AvatarImage src={user.image ? (user.image) :"https://github.com/shadcn.png"} />  
+            <AvatarImage src= {user.image ? (user.image) : "https://github.com/shadcn.png"} />  
            <AvatarFallback>{user?.name}</AvatarFallback>
            </Avatar>
         </DropdownMenuTrigger>
@@ -129,14 +129,14 @@ export const NavBar = ({userFromProps}:{userFromProps:User|undefined|null}) => {
         {
           "w-8 hover:bg-white cursor-pointer hover:bg-opacity-15 aspect-square hover:text-themeorange flex md:hidden p-1 transition-colors active:scale-90"
         + " " +
-        (isOpen?"w-auto p-4 bg-themeblue rounded-full":"rounded-lg")
+        (isOpen?"w-auto p-2 bg-neutral-700 rounded-full border-2 border-neutral-600 mt-5":"rounded-lg")
         }
         onClick = {toggleMenuOpen}
         >
           {
           isOpen
           ?
-          <X className="w-full"/>
+          <X className="w-full "/>
           :
           <Menu className="w-full" />
           }
