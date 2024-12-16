@@ -38,3 +38,9 @@ model Game{
   playedBy     Int @default(0)
   points       Point[]
 }
+
+model StandardTracker {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  currentIndex Int     @default(0)
+  lastUpdated DateTime @default(now())
+}
