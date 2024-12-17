@@ -54,8 +54,11 @@ export async function GET(
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }> }
 ) {
+
+  const {userId} = await params;
+
   const session = await auth()
   
   if (!session?.user) {
@@ -65,7 +68,7 @@ export async function PATCH(
   try {
     const { points } = await request.json()
     
-    const user = updatePlayerTotalPoints({newTotalPoints:points, userId: params.userId})
+    const user = updatePlayerTotalPoints({newTotalPoints:points, userId: userId})
 
     return NextResponse.json(user)
   } catch (error) {
