@@ -4,8 +4,9 @@ import { X } from "lucide-react"
 import { useState } from "react"
 import { useSession } from "next-auth/react"
 import Link from "next/link"
+import Image from "next/image"
 
-export const GameCard = ({heading, description, imgLink, instructions, className}:{heading:string, description:string,imgLink:string, instructions: string[], className?:string|undefined|null}) => 
+export const GameCard = ({heading, description, imgLink, instructions, gameLink, className}:{heading:string, description:string,gameLink:string,imgLink:string, instructions: string[], className?:string|undefined|null}) => 
     {
     
     const {data:session} = useSession();
@@ -15,7 +16,7 @@ export const GameCard = ({heading, description, imgLink, instructions, className
     return <span className={"flex flex-col rounded-xl bg-stone-800 p-5 gap-5 min-w-[300px] w-1/4 min-h-[100px]"+" "+className}>
            
             <div className={"w-full aspect-[1.35] rounded-lg overflow-hidden flex items-center justify-center"}>
-                <img inert={true} className="w-full h-auto" src={imgLink} alt={heading} />
+                <Image inert={true} className="w-full h-auto" width={500} height={500} src={imgLink}  alt={heading} />
             </div>
 
             <h1 className = "text-md lg:text-lg xl:text-xl text-white font-semibold">
@@ -30,9 +31,9 @@ export const GameCard = ({heading, description, imgLink, instructions, className
                 >
                     How to Play
                 </button>
-                <button className="active:scale-95 w-full p-1 py-3 sm:p-2 md:p-3 bg-gradient-to-r from-themeorange hover:from-themeblue to-themeblue hover:to-themeorange border-2 border-none rounded-full text-center transition-colors whitespace-nowrap" >
+                <Link href={gameLink||"/"} className="active:scale-95 w-full p-1 py-3 sm:p-2 md:p-3 bg-gradient-to-r from-themeorange hover:from-themeblue to-themeblue hover:to-themeorange border-2 border-none rounded-full text-center transition-colors whitespace-nowrap" >
                     Play Now
-                </button>
+                </Link>
 
             </div>
 
@@ -80,7 +81,7 @@ export const GameCard = ({heading, description, imgLink, instructions, className
 
                             <Link 
                             href={
-                                (session?.user)?"/dashboard":"/login"
+                                (session?.user)?(gameLink||"/"):"/login"
                             }
                             className="active:scale-95 w-full p-3 bg-gradient-to-r from-themeorange hover:from-themeblue to-themeblue hover:to-themeorange border-2 border-none rounded-full text-center transition-colors" >
                                 Play Now
@@ -96,8 +97,6 @@ export const GameCard = ({heading, description, imgLink, instructions, className
                         
                     </div>
             }
-
-
 
     </span>
 }

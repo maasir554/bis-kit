@@ -41,6 +41,7 @@ export const HomePage = () => (
                             imgLink={game.imgLink}
                             instructions={game.instructions}
                             key={idx}
+                            gameLink={game.gameLink}
                         />
                     )
                 )
