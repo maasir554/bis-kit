@@ -59,9 +59,9 @@ export async function GET(
         }
       })
     } catch (error) {
-      return NextResponse.json({message:"File not found", filePath:filePath}, { status: 404 })
+      return NextResponse.json({message:"File not found", filePath:filePath,error}, { status: 404 })
     }
   } catch (error) {
-    return new NextResponse("Internal Error", { status: 500 })
+    return NextResponse.json({message:"Internal Error",error}, { status: 500 })
   }
 }

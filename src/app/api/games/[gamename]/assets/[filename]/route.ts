@@ -20,7 +20,7 @@ export async function GET(
 
     const {filename, gamename} = await params; 
 
-    const url = new URL(request.url)
+    // const url = new URL(request.url)
       
     const filePath = path.join(process.cwd(), 'src', 'games', gamename,"assets", filename)
     
@@ -47,10 +47,10 @@ export async function GET(
         }
       })
     } catch (error) {
-      return NextResponse.json({message:"File not found", filePath:filePath}, { status: 404 })
+      return NextResponse.json({message:"File not found", filePath:filePath, error}, { status: 404 })
     }
   } catch (error) {
-    return new NextResponse("Internal Error", { status: 500 })
+    return NextResponse.json({heading:"Internal Error", error:error}, { status: 500 })
   }
 }
 

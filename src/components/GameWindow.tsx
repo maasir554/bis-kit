@@ -2,12 +2,12 @@
 
 import {useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react';
-import { User } from 'next-auth';
+// import { User } from 'next-auth';
 
 export const GameWindow = ({gamename}:{gamename:string}) => {
     
     const session = useSession()
-    const user = session.data?.user?.id;
+    const userId = session.data?.user?.id;
     
     const [lastScore, setLastScore] = useState<number | null>(null)
 
@@ -26,7 +26,8 @@ export const GameWindow = ({gamename}:{gamename:string}) => {
             },
             body: JSON.stringify({
               gamename: gamename,
-              score: event.data.score
+              score: event.data.score,
+              userId: userId 
             })
           })
 
