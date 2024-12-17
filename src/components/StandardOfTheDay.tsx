@@ -76,7 +76,7 @@ export const StandardOfTheDay = () => {
                         href ={
                             
                             // "https://www.services.bis.gov.in/php/BIS_2.0/bisconnect/knowyourstandards/Indian_standards/isdetails_mnd/12999" 
-                            standard["field2"]
+                            standard["field2"]?standard["field2"]:"https://www.bis.gov.in/"
                         } 
                         className="py-3 px-5 bg-neutral-200 hover:bg-white w-fit justify-center items-center text-black font-bold rounded-full flex flex-row gap-2 group active:scale-95 transition-transform"
                         >

@@ -21,6 +21,16 @@ model User {
   maxScoresIn           Game[]
   maxPointsValue        Int?
   maxPointsValueAt      DateTime?
+  socialLinks           SocialLinks?
+}
+
+model SocialLinks{
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  linkedin  String? 
+  instagram String? 
+  twitter   String? 
+  userId    String @unique @db.ObjectId
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Point{
@@ -35,7 +45,7 @@ model Point{
 
 model Game{
   id                        String        @id @default(auto()) @map("_id") @db.ObjectId
-  name                      String 
+  name                      String        @unique
   createdAt                 DateTime      @default(now())
   highestScore              Int           @default(0)
   highestScoreRecordedBy    String?        @db.ObjectId

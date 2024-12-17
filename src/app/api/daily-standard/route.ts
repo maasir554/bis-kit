@@ -1,15 +1,20 @@
 
 import { getTodayStandard } from '@/lib/utils'
 import { NextResponse } from 'next/server'
+import { auth } from '@/auth'
 
 export const GET = async () => {
     
+  const session = await auth() 
+
+  if(!session) return NextResponse.json({message:"Unauthorized request"},{status:401})
+
   try {
     const standard = await getTodayStandard()
-    return new NextResponse(JSON.stringify(standard), {status:200})
+    return NextResponse.json((standard), {status:200})
   } catch (error) {
     console.error('Error fetching daily standard:', error)
-    return new NextResponse(JSON.stringify({message:"Internal server error"}), {status:500})
+    return NextResponse.json(({message:"Internal server error"}), {status:500})
 
   }
 }

@@ -71,8 +71,8 @@ const populate = (size) => {
     game.innerHTML += `
       <button type="button" class="card" data-image="${e}">
           <div class="sides-encloser">
-                <img inert src="assets/default.png" alt="question" draggable="false" class="front" />
-                <img inert src="assets/${e}.png" alt="item" draggable="false" class="back" />
+                <img inert src="manak-matchers/assets/default.png" alt="question" draggable="false" class="front" />
+                <img inert src="manak-matchers/assets/${e}.png" alt="item" draggable="false" class="back" />
           </div>
       </button>
     `;
