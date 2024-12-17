@@ -7,8 +7,10 @@ const prisma = new PrismaClient()
 
 export async function GET(
   request: Request,
-  { params }: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string}>}
 ) {
+  const {userId} = await params;
+
   const session = await auth()
   
   if (!session?.user) {
@@ -16,14 +18,14 @@ export async function GET(
   }
 
   // Optional: Check if user is requesting their own points
-  if (session.user.id !== params.userId) {
+  if (session.user.id !== userId) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 })
   }
 
   try {
     const user = await prisma.user.findUnique({
       
-      where: { id: params.userId },
+      where: { id: userId },
       
       select: {
         id:true,
