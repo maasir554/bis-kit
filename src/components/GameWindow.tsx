@@ -12,44 +12,74 @@ export const GameWindow = ({gamename}:{gamename:string}) => {
 
     const session = useSession();
     
-    const [currentTotalScore, setCurrentTotalScore] = useState(0);
+    // const [currentTotalScore, setCurrentTotalScore] = useState(0);
     
-  const updatePointsInFrontend = useTotalPointsStore().updateTotalPoints
+    const frontendPointsStore = useTotalPointsStore()
+    
+    const totalPoints = frontendPointsStore.totalPoints
+
+    const updatePointsInFrontend = frontendPointsStore.updateTotalPoints
+
+
+    useEffect(()=>{
+      if(session.status==='authenticated' && session?.data?.user?.id){
+        setUserId(session.data.user.id)
+      }
+    },[session]);
+
+
+    useEffect(()=>{
+      if (!userId) return;
+      (async()=>{
+          try{
+            await frontendPointsStore.fetchTotalPoints(userId);
+            console.log(totalPoints);
+          }
+          catch(err){
+            console.error("Error in getting total points from server",err);
+          }
+      })()
+    },[])
+
 
     useEffect(() => {
       
+      if(!userId) return;
+
       if(session.status === "loading") return;
       if(session.status === "unauthenticated") console.error("Unauthenticated request.");
 
       console.log(session);
-      setUserId(session?.data?.user?.id || 'hello');
+      // setUserId(session?.data?.user?.id || 'hello');
       console.log("userId is: ",userId);
 
-      if(userId) (async()=>{
-        // first fetch the user's currentTotalScore
-        try{
+      // (async()=>{
+      //   // first fetch the user's currentTotalScore
+      //   try{
 
-          const responseOfGetTotalPoints = await fetch(`/api/users/${userId}/points`);
+      //     // const responseOfGetTotalPoints = await fetch(`/api/users/${userId}/points`);
 
-          if(!responseOfGetTotalPoints.ok) throw new Error ("Failed to get total points");
+      //     // if(!responseOfGetTotalPoints.ok) throw new Error ("Failed to get total points");
 
-          const dataOfGetTotalPoints = await responseOfGetTotalPoints.json();
+      //     // const dataOfGetTotalPoints = await responseOfGetTotalPoints.json();
           
-          console.log("total points from database ",dataOfGetTotalPoints);
+      //     // console.log("total points from database ",dataOfGetTotalPoints);
 
-          const {totalPoints} = dataOfGetTotalPoints
+      //     // const {totalPoints} = dataOfGetTotalPoints
           
-          console.log(totalPoints);
+      //     // console.log(totalPoints);
 
-          setCurrentTotalScore(Number(totalPoints));
+      //     // setCurrentTotalScore(Number(totalPoints));
 
-          console.log(currentTotalScore);
-        }
-        catch(error){
-          console.error("Error in getting total current points of the user", error);
-        }
+      //     // console.log(currentTotalScore);
+      //     await frontendPointsStore.fetchTotalPoints(userId);
 
-      })();
+      //   }
+      //   catch(error){
+      //     console.error("Error in getting total current points of the user", error);
+      //   }
+
+      // })();
       
       const handleMessage = async (event: MessageEvent) => {
         // Only handle messages from our game
@@ -57,8 +87,8 @@ export const GameWindow = ({gamename}:{gamename:string}) => {
           try {
             console.log('Received score:', event.data.score);
 
-            const newCurrentTotalPoints = (currentTotalScore + Math.ceil((event.data.score)/(gamename==="manak-matchers"?40:20)))
-            
+            const newCurrentTotalPoints = (totalPoints + Math.ceil((event.data.score)/(gamename==="manak-matchers"?20:40)))
+
             const response = await fetch(`/api/users/${userId}/points`, {
               method: 'PATCH',
               headers: {
@@ -95,7 +125,7 @@ export const GameWindow = ({gamename}:{gamename:string}) => {
 
         return () => window.removeEventListener('message', handleMessage)
         
-    }, [gamename, session, session?.status, currentTotalScore, userId, updatePointsInFrontend])
+    }, [gamename,frontendPointsStore, userId])
 
       return (
       <div className="relative h-full w-[95%] overflow-hidden rounded-xl border-2 border-neutral-600">

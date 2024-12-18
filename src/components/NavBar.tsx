@@ -158,7 +158,7 @@ export const NavBar = ({userFromProps}:{userFromProps:User|undefined|null}) => {
   },[])
 
   return(
-        <nav className={`overflow-hidden z-50 backdrop-blur-lg fixed left-1/2 -translate-x-1/2 bg-opacity-10 bg-neutral-200 flex flex-row items-center gap-4 lg:gap-6 xl:gap-10 w-11/12 md:w-10/12 rounded-b-xl h-16 px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 text-md md:text-xs lg:text-sm transition-all duration-300 ease-in-out ${isOpen?"top-0 bottom-0 rounded-none flex-col py-10 bg-opacity-75 bg-neutral-900 w-screen h-screen justify-center":"top-0 justify-between "} `}>
+        <nav className={`overflow-hidden z-50 backdrop-blur-lg fixed left-1/2 -translate-x-1/2 bg-opacity-10 bg-neutral-200 flex flex-row items-center gap-4 lg:gap-6 xl:gap-10 w-11/12 md:w-10/12 rounded-b-xl h-10 md:h-16 px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 text-md md:text-xs lg:text-sm transition-all duration-300 ease-in-out ${isOpen?"top-0 bottom-0 rounded-none flex-col py-10 bg-opacity-75 bg-neutral-900 w-screen h-screen justify-center":"top-0 justify-between "} `}>
         <Link 
         onClick={()=>setIsOpen(false)}
         href={"/"} 
@@ -166,7 +166,7 @@ export const NavBar = ({userFromProps}:{userFromProps:User|undefined|null}) => {
         {
         " text-neutral-300 font-semibold"
           +" "+
-        (isOpen?"text-4xl w-full text-center animate-[fadeanim_0.5s_ease]":"text-xl")
+        (isOpen?"text-4xl w-full text-center animate-[fadeanim_0.5s_ease]":"text-base md:text-xl")
         }
         >
           Bis<span className="text-themeblue">Kit</span>
@@ -197,16 +197,16 @@ export const NavBar = ({userFromProps}:{userFromProps:User|undefined|null}) => {
         <span 
         className=
         {
-          "w-8 hover:bg-white cursor-pointer hover:bg-opacity-15 aspect-square hover:text-themeorange flex md:hidden p-1 transition-colors active:scale-90"
+          "w-7 md:w-8 t-extxs hover:bg-white cursor-pointer hover:bg-opacity-15 aspect-square hover:text-themeorange flex md:hidden md:p-1 transition-colors active:scale-90 justify-center items-center"
         + " " +
-        (isOpen?"w-auto p-2 bg-neutral-700 rounded-full border-2 border-neutral-600 mt-5":"rounded-lg")
+        (isOpen?"w-12 bg-neutral-700 rounded-full border-2 border-neutral-600 mt-5":"rounded-lg")
         }
         onClick = {toggleMenuOpen}
         >
           {
           isOpen
           ?
-          <X className="w-full "/>
+          <X className="w-8"/>
           :
           <Menu className="w-full" />
           }

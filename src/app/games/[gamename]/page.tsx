@@ -15,7 +15,7 @@ export default async function Page({params}:{params:Promise<{gamename:string}>})
         {
             session?.user
             ?
-            <section className="w-full h-screen pt-20 pb-5 flex flex-col justify-center items-center">
+            <section className="w-full h-screen pt-12 md:pt-20 pb-5 flex flex-col justify-center items-center">
                 <GameWindow gamename={gamename} />
             </section>
             :
