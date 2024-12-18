@@ -73,7 +73,7 @@ export async function PATCH(
 
     const pointRecord = await storePointRecord({value:currentlyEarnedPoints,userId:userId,gameName:gamename})
 
-    return NextResponse.json({user:user,pointRedord:pointRecord}, {status:200})
+    return NextResponse.json({user:user,pointRedord:pointRecord,newCurrentTotalPoints:newCurrentTotalPoints}, {status:200})
   } 
   catch (error){
     console.log('Error updating user points:', error);

@@ -8,6 +8,8 @@ import { signOut } from "next-auth/react";
 
 import { MouseEventHandler, useEffect, useState } from "react";
 
+import { useTotalPointsStore } from "@/app/stores/pointsStore";
+
 // import { useSession } from "next-auth/react";
 
 import {
@@ -18,6 +20,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+
+import { Skeleton } from "./ui/skeleton";
+
 import { User } from "next-auth";
 
 
@@ -38,10 +43,75 @@ const UserProfileBox = ({userFromProps}:{userFromProps:User}) => {
 
   const user = userFromProps;
 
+  const TotalPointsStore = useTotalPointsStore()
+
+
+  useEffect(
+    ()=>{
+      (async()=>{
+        if(user.id) await TotalPointsStore.fetchTotalPoints(user.id);
+      })()
+    },[user.id]
+  )
+
+  
+  // const [userCurrentTotalPoints, setUserCurrentTotalPoints] = useState(null);
+
+  // useEffect(()=>{
+  //   (async()=>{
+  //     const responseOfGetTotalPoints = await fetch(`/api/users/${user.id}/points`);
+      
+  //     if(!responseOfGetTotalPoints.ok) throw new Error ("Failed to get total points");
+      
+  //     const dataOfGetTotalPoints = await responseOfGetTotalPoints.json();
+      
+  //     console.log("total points from database ",dataOfGetTotalPoints);
+
+  //     const {totalPoints} = dataOfGetTotalPoints;
+
+  //     setUserCurrentTotalPoints(totalPoints);
+    
+  //   })()
+  // },[])
+
+  const [bgClassName, setBgClassName] = useState<string|null>("bg-neutral-900");
+
+  useEffect(()=>{
+        !TotalPointsStore.isLoading && setBgClassName(
+          TotalPointsStore.totalPoints > 50
+          ?
+          "bg-gradient-to-br from-yellow-500 to-yellow-700"
+          :
+          TotalPointsStore.totalPoints > 25
+          ?
+          "bg-gradient-to-br from-zinc-400 to-zinc-600"
+          :
+          "bg-yellow-950"
+          
+        )
+  },[TotalPointsStore.totalPoints])
+
   return (
       <DropdownMenu>
-        <DropdownMenuTrigger>
-        <Avatar className="w-20 h-20 md:w-10 md:h-10" >         
+        <DropdownMenuTrigger className={"flex flex-row justify-center gap-2 py-1 pl-5 rounded-full "+ bgClassName}>
+        
+        <span className="flex flex-row gap-2 justify-center items-center h-full">
+            <span className="w-5 h-5 rounded-full bg-gradient-to-br from-yellow-500 to-amber-700 border-black border-2">
+            </span>
+            <div className="text-white font-semibold text-sm min-w-7 text-start">
+                {/* {userCurrentTotalPoints || 0} */} {/* not doing this, using skeliton instead*/}
+                {
+                  // userCurrentTotalPoints!==null
+                  TotalPointsStore.isLoading
+                  ?
+                  <Skeleton className="w-5 h-4 opacity-25"/>
+                  :
+                  <span>{TotalPointsStore.totalPoints}</span>
+                }
+            </div>
+        </span>
+        
+        <Avatar className="w-16 h-16 md:w-10 md:h-10" >         
             <AvatarImage src= {user.image ? (user.image) : "https://github.com/shadcn.png"} />  
            <AvatarFallback>{user?.name}</AvatarFallback>
            </Avatar>

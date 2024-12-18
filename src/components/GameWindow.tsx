@@ -2,6 +2,8 @@
 
 import {useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react';
+import { useTotalPointsStore } from "@/app/stores/pointsStore";
+
 // import { User } from 'next-auth';
 
 export const GameWindow = ({gamename}:{gamename:string}) => {
@@ -12,6 +14,8 @@ export const GameWindow = ({gamename}:{gamename:string}) => {
     
     const [currentTotalScore, setCurrentTotalScore] = useState(0);
     
+  const updatePointsInFrontend = useTotalPointsStore().updateTotalPoints
+
     useEffect(() => {
       
       if(session.status === "loading") return;
@@ -53,6 +57,8 @@ export const GameWindow = ({gamename}:{gamename:string}) => {
           try {
             console.log('Received score:', event.data.score);
 
+            const newCurrentTotalPoints = (currentTotalScore + Math.ceil((event.data.score)/(gamename==="manak-matchers"?40:20)))
+            
             const response = await fetch(`/api/users/${userId}/points`, {
               method: 'PATCH',
               headers: {
@@ -61,16 +67,18 @@ export const GameWindow = ({gamename}:{gamename:string}) => {
               body: JSON.stringify({
                 gamename: gamename,
                 currentlyEarnedPoints: event.data.score,
-                newCurrentTotalPoints: (currentTotalScore + Math.ceil((event.data.score)/(gamename==="manak-matchers"?40:20))),
+                newCurrentTotalPoints: newCurrentTotalPoints,
                 // userId: userId 
               })
             })
 
-              if (!response.ok) {
+              if (!response?.ok) {
               throw new Error('Failed to submit score')
-            }
+              }
 
-              // Optionally send a confirmation back to the game
+              updatePointsInFrontend(newCurrentTotalPoints);
+
+              // send a confirmation back to the game
             const iframe = document.querySelector('iframe')
             iframe?.contentWindow?.postMessage({
               type: 'SCORE_SAVED',
@@ -90,9 +98,9 @@ export const GameWindow = ({gamename}:{gamename:string}) => {
     }, [gamename, session, session?.status, currentTotalScore, userId])
 
       return (
-      <div className="relative h-full w-[95%] overflow-hidden rounded-xl">
+      <div className="relative h-full w-[95%] overflow-hidden rounded-xl border-2 border-neutral-600">
         <iframe 
-          src={`/api/games/${gamename}?file=index.html`}
+          src={gamename!== "a-gold-story"?`/api/games/${gamename}?file=index.html`:"/a-gold-story/index.html"}
 
             className= "w-full h-full border-none"
 

@@ -20,6 +20,6 @@ export const gameCardsData: {heading:string, description:string, gameLink:string
         "description":"A Gold Story is a choice-based story game that promotes awareness about Gold Hallmarking and focuses on educating players about the importance of verifying gold jewelry for authenticity.\nNOTE: The game is for learning and educational purposes and does not affect leaderboard ranking in any way",
         "imgLink":"/a-gold-story-game.png",
         "instructions":["Choose an option when a choice is provided, the option chosen will lead to the subsequent outcome.","Users can return to a previous choice to change the selected option.","Users can replay the game to explore different story paths."],
-        gameLink:"/"
+        gameLink:"/games/a-gold-story"
     },
 ]
