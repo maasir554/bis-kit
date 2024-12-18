@@ -51,7 +51,7 @@ export const GameCard = ({heading, description, imgLink, instructions, gameLink,
                         
                         <div className="z-[105] relative animate-[show-in_0.2s_ease-out] w-[calc(100%-1rem)] max-w-xl bg-neutral-900 min-h-6 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-6 py-5 rounded-xl flex flex-col justify-center items-start gap-5 border-2 border-neutral-800">
                             <h1 className="font-semibold text-xl md:text-2xl xl:text-3xl text-neutral-200">
-                                Card Matching Game
+                                {heading}
                             </h1>
                             <div className="text-neutral-300">
                                 <h2 className="text-lg font-semibold mb-3 text-themeblue" >

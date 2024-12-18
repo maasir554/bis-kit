@@ -36,21 +36,21 @@ model SocialLinks{
 model Point{
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
   value         Int       @default(0)
-  scoredAt      DateTime  @default(now())
+  scoredAt      DateTime?  @default(now())
   userId        String    @db.ObjectId
-  gameId        String    @db.ObjectId
+  gameId        String    @db.ObjectId 
   earnedBy      User      @relation(fields: [userId], references: [id])
   earnedInGame  Game      @relation(fields: [gameId], references: [id])
 }
 
 model Game{
   id                        String        @id @default(auto()) @map("_id") @db.ObjectId
-  name                      String        @unique
+  name                      String        @unique 
   createdAt                 DateTime      @default(now())
-  highestScore              Int           @default(0)
-  highestScoreRecordedBy    String?        @db.ObjectId
-  UserWithHighestScore      User?          @relation(fields: [highestScoreRecordedBy], references: [id])
-  playedByCount             Int           @default(0)
+  highestScore              Int?          @default(0)
+  highestScoreRecordedBy    String?       @db.ObjectId
+  UserWithHighestScore      User?         @relation(fields: [highestScoreRecordedBy], references: [id])
+  playedByCount             Int?          @default(0)
   points                    Point[]
 }
 

@@ -1,5 +1,5 @@
 import { auth } from "@/auth"
-import { updatePlayerTotalPoints } from "@/lib/score-utils"
+import { storePointRecord, updatePlayerTotalPoints } from "@/lib/score-utils"
 import { PrismaClient } from "@prisma/client"
 import { NextResponse } from "next/server"
 
@@ -66,16 +66,19 @@ export async function PATCH(
   }
 
   try {
-    const { points } = await request.json()
+    const { gamename, currentlyEarnedPoints, newCurrentTotalPoints } = await request.json()
+    console.log(gamename, currentlyEarnedPoints, newCurrentTotalPoints);
     
-    const user = updatePlayerTotalPoints({newTotalPoints:points, userId: userId})
+    const user = await updatePlayerTotalPoints({newTotalPoints:newCurrentTotalPoints, userId: userId})
 
-    return NextResponse.json(user)
-  } catch (error) {
-    console.error('Error updating user points:', error)
-    return NextResponse.json(
-      { error: "Failed to update points" },
-      { status: 500 }
-    )
+    const pointRecord = await storePointRecord({value:currentlyEarnedPoints,userId:userId,gameName:gamename})
+
+    return NextResponse.json({user:user,pointRedord:pointRecord}, {status:200})
+  } 
+  catch (error){
+    console.log('Error updating user points:', error);
+    return NextResponse.json({ error: "Failed to update points" },{ status: 500 })
   }
+
 }
+

@@ -161,6 +161,13 @@ const VictoryChecker = () => {
   // this function not only checks victory, but updates the DOM after victory.
   // gridSize can be found in data.js
     if (pairedCards.length == gridSize ** 2) {
+
+
+      window.parent.postMessage({
+        type: 'SUBMIT_SCORE',
+        score: currentScore
+      }, '*');
+
       gameIsRunning = false;
       togglePlayButton.innerText = "Play Again";
       root.style.setProperty("--menu-btn-primary", "rgb(65, 177, 0)");
@@ -282,6 +289,8 @@ const MovesCounsumedCountUpdater = () => {
 
 //For score calculation :
 
+let currentScore;
+
 highScoreBox = document.getElementById("high-score-box");
 currentScoreBox = document.getElementById("current-score-box");
 scoreDialogueBox = document.getElementById("score"); // inside the victory box.
@@ -294,7 +303,7 @@ ScoreUpdater = () => {
   LSHighScore = localStorage.getItem("HighScore");
   let HighScore = LSHighScore != "null" ? LSHighScore : 0;
   let t = secs + mins * 60;
-  let currentScore = Math.floor(
+  currentScore = Math.floor(
     pairedCards.length ** 5 / (1 + t ** 2 + movesConsumedCount ** 2)
   );
   if (currentScore > HighScore) {

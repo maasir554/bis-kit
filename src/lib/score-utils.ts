@@ -16,15 +16,31 @@ export const updatePlayerTotalPoints = async ({newTotalPoints, userId}:
 }
 
 export const storePointRecord = async (
-    {value, userId, gameId}:{value:number,userId:string,gameId:string})=>{
+    {value, userId, gameName}:{value:number,userId:string,gameName:string})=>{
         // returning promise pls remember
-        return prisma.point.create({
-            data:{
-                value:value, 
-                userId:userId,
-                gameId:gameId,
-            }
-    })
+        
+        try{
+            const gameHere = await prisma.game.findUnique({
+                where:{
+                    name: gameName
+                },
+                select:{
+                    id:true
+                }
+            });
+
+            if(gameHere) return prisma.point.create({
+                data:{
+                    value:value, 
+                    userId:userId,
+                    gameId: gameHere?.id
+                }
+            });
+        }
+        catch(error){
+            console.log(error);
+            throw new Error("Internal server eror");
+        }
 } 
 
 
