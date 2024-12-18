@@ -12,8 +12,6 @@ export const GameWindow = ({gamename}:{gamename:string}) => {
 
     const session = useSession();
     
-    // const [currentTotalScore, setCurrentTotalScore] = useState(0);
-    
     const frontendPointsStore = useTotalPointsStore()
     
     const totalPoints = frontendPointsStore.totalPoints
@@ -50,36 +48,7 @@ export const GameWindow = ({gamename}:{gamename:string}) => {
       if(session.status === "unauthenticated") console.error("Unauthenticated request.");
 
       console.log(session);
-      // setUserId(session?.data?.user?.id || 'hello');
       console.log("userId is: ",userId);
-
-      // (async()=>{
-      //   // first fetch the user's currentTotalScore
-      //   try{
-
-      //     // const responseOfGetTotalPoints = await fetch(`/api/users/${userId}/points`);
-
-      //     // if(!responseOfGetTotalPoints.ok) throw new Error ("Failed to get total points");
-
-      //     // const dataOfGetTotalPoints = await responseOfGetTotalPoints.json();
-          
-      //     // console.log("total points from database ",dataOfGetTotalPoints);
-
-      //     // const {totalPoints} = dataOfGetTotalPoints
-          
-      //     // console.log(totalPoints);
-
-      //     // setCurrentTotalScore(Number(totalPoints));
-
-      //     // console.log(currentTotalScore);
-      //     await frontendPointsStore.fetchTotalPoints(userId);
-
-      //   }
-      //   catch(error){
-      //     console.error("Error in getting total current points of the user", error);
-      //   }
-
-      // })();
       
       const handleMessage = async (event: MessageEvent) => {
         // Only handle messages from our game
@@ -98,7 +67,6 @@ export const GameWindow = ({gamename}:{gamename:string}) => {
                 gamename: gamename,
                 currentlyEarnedPoints: event.data.score,
                 newCurrentTotalPoints: newCurrentTotalPoints,
-                // userId: userId 
               })
             })
 

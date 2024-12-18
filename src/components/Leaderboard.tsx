@@ -48,7 +48,7 @@ export const Leaderboard =
         </TableRow> */}
         {
             users.map((user, idx) => (
-               <Link href={`/profile/${user.id}`}>
+               <Link key={idx} href={`/profile/${user.id}`}>
                 <TableRow className="hover:bg-yellow-950 hover:bg-opacity-30 cursor-pointer">
                   <TableCell className="p-2 sm:p-4 font-medium">{idx+1}</TableCell>
                   <TableCell className="p-2 sm:p-4 flex flex-row items-center gap-4">
