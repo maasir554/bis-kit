@@ -77,7 +77,7 @@ const UserProfileBox = ({userFromProps}:{userFromProps:User}) => {
   const [bgClassName, setBgClassName] = useState<string|null>("bg-neutral-900");
 
   useEffect(()=>{
-        !TotalPointsStore.isLoading && setBgClassName(
+        if(!TotalPointsStore.isLoading) setBgClassName(
           TotalPointsStore.totalPoints > 50
           ?
           "bg-gradient-to-br from-yellow-500 to-yellow-700"
@@ -88,8 +88,8 @@ const UserProfileBox = ({userFromProps}:{userFromProps:User}) => {
           :
           "bg-yellow-950"
           
-        )
-  },[TotalPointsStore.totalPoints])
+        );
+  },[TotalPointsStore, TotalPointsStore.totalPoints, TotalPointsStore.isLoading])
 
   return (
       <DropdownMenu>

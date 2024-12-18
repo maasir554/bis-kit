@@ -95,7 +95,7 @@ export const GameWindow = ({gamename}:{gamename:string}) => {
 
         return () => window.removeEventListener('message', handleMessage)
         
-    }, [gamename, session, session?.status, currentTotalScore, userId])
+    }, [gamename, session, session?.status, currentTotalScore, userId, updatePointsInFrontend])
 
       return (
       <div className="relative h-full w-[95%] overflow-hidden rounded-xl border-2 border-neutral-600">
