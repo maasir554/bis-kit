@@ -8,12 +8,6 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar";
-// import { Link } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 

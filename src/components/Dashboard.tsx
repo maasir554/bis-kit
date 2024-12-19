@@ -9,21 +9,6 @@ import { gameCardsData } from "./CONSTANTS";
 
 import { LeaderboardUser } from "./Leaderboard";
 
-import {
-    Table,
-    TableBody,
-    TableCaption,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-  } from "@/components/ui/table"
-
-import {
-    Avatar,
-    AvatarFallback,
-    AvatarImage,
-  } from "@/components/ui/avatar";
 import { useEffect, useState } from "react";
 import { Leaderboard } from "./Leaderboard";
 import { Skeleton } from "./ui/skeleton";
