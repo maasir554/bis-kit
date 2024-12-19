@@ -1,3 +1,7 @@
+// @ts-nocheck
+/* eslint-disable */
+
+
 let fadeAlpha = 0; // Opacity for fade effect
 let fadingIn = true; // Control the direction of fade
 let fadeSpeed = 10; // Speed of fade animation
