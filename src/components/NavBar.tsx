@@ -10,8 +10,6 @@ import { MouseEventHandler, useEffect, useState } from "react";
 
 import { useTotalPointsStore } from "@/app/stores/pointsStore";
 
-// import { useSession } from "next-auth/react";
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,9 +22,6 @@ import {
 import { Skeleton } from "./ui/skeleton";
 
 import { User } from "next-auth";
-import Image from "next/image";
-
-
 
 const LoginSignupBox = ({onClick}:{onClick:MouseEventHandler}) => (
   <span className="flex flex-row gap-2 items-center justify-center font-normal">

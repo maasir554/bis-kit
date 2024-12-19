@@ -19,7 +19,7 @@ interface DashboardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const DashBoard = ({user}:DashboardProps) => {
 
-    const [topUsers, setTopUsers] = useState<Object|null>(null);
+    const [topUsers, setTopUsers] = useState<LeaderboardUser[]|null>(null);
     
     useEffect(()=>{
       (async()=>{
