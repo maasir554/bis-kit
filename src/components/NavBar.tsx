@@ -54,26 +54,6 @@ const UserProfileBox = ({userFromProps}:{userFromProps:User}) => {
     },[user.id]
   )
 
-  
-  // const [userCurrentTotalPoints, setUserCurrentTotalPoints] = useState(null);
-
-  // useEffect(()=>{
-  //   (async()=>{
-  //     const responseOfGetTotalPoints = await fetch(`/api/users/${user.id}/points`);
-      
-  //     if(!responseOfGetTotalPoints.ok) throw new Error ("Failed to get total points");
-      
-  //     const dataOfGetTotalPoints = await responseOfGetTotalPoints.json();
-      
-  //     console.log("total points from database ",dataOfGetTotalPoints);
-
-  //     const {totalPoints} = dataOfGetTotalPoints;
-
-  //     setUserCurrentTotalPoints(totalPoints);
-    
-  //   })()
-  // },[])
-
   const [bgClassName, setBgClassName] = useState<string|null>("bg-neutral-900");
 
   useEffect(()=>{
@@ -139,15 +119,16 @@ const UserProfileBox = ({userFromProps}:{userFromProps:User}) => {
 
 export const NavBar = ({userFromProps}:{userFromProps:User|undefined|null}) => {
 
-  // use the session to get auth details like user name, email, and image
-  // const {data:session} = useSession()
-  // const user = session?.user;
-// 
   const user = userFromProps
 
   // state of navbar [mobile devices]
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
+
+  // For dixing hyreation issues :- {suggested by nextjs documentry}
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(()=>{setIsClient(true)},[])
 
   const toggleMenuOpen = () => setIsOpen(isOpen => !isOpen);
 
@@ -166,7 +147,7 @@ export const NavBar = ({userFromProps}:{userFromProps:User|undefined|null}) => {
         {
         " text-neutral-300 font-semibold"
           +" "+
-        (isOpen?"text-4xl w-full text-center animate-[fadeanim_0.5s_ease]":"text-base md:text-xl")
+        (isClient&&isOpen?"text-4xl w-full text-center animate-[fadeanim_0.5s_ease]":"text-base md:text-xl")
         }
         >
           Bis<span className="text-themeblue">Kit</span>
@@ -197,16 +178,16 @@ export const NavBar = ({userFromProps}:{userFromProps:User|undefined|null}) => {
         <span 
         className=
         {
-          "w-7 md:w-8 t-extxs hover:bg-white cursor-pointer hover:bg-opacity-15 aspect-square hover:text-themeorange flex md:hidden md:p-1 transition-colors active:scale-90 justify-center items-center"
+          "text-xs hover:bg-white cursor-pointer hover:bg-opacity-15 aspect-square hover:text-themeorange flex md:hidden md:p-1 transition-colors active:scale-90 justify-center items-center"
         + " " +
-        (isOpen?"w-12 bg-neutral-700 rounded-full border-2 border-neutral-600 mt-5":"rounded-lg")
+        (isClient&&isOpen?"w-12 bg-neutral-700 rounded-full border-2 border-neutral-600 mt-5":"rounded-lg w-7 md:w-8")
         }
         onClick = {toggleMenuOpen}
         >
           {
           isOpen
           ?
-          <X className="w-8"/>
+          <X className="w-full"/>
           :
           <Menu className="w-full" />
           }
