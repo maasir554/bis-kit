@@ -5,7 +5,7 @@ export const gameCardsData: {heading:string, description:string, gameLink:string
         "description":"Shoot'em Standards is a fast-paced balloon shooter game in which the player has to match the target products with their respective standards,\n this will help them know about the standards for the daily life products around them engagingly.\nScores for this game are used to award coins, which will be used for leaderboard ranking. (40 score = 1 coin)",
         "imgLink":"/shoot-em-standards.png",
         "instructions":["There will be 4 balloons at a time on the screen, 1 correct and 3 incorrect.","On shooting the correct balloon all balloons will burst with confetti and the score will increase.","On shooting the wrong balloon the balloon will be replaced by another balloon and a penalty on score and no. of tries left will be imposed."],
-        gameLink:"/",
+        gameLink:"/games/shoot-em-standards",
     },
     {
         "heading":"Maanak Matchers",
