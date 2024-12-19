@@ -7,6 +7,8 @@ import { User } from "next-auth"
 import { GameCard } from "./GameCard";
 import { gameCardsData } from "./CONSTANTS";
 
+import { LeaderboardUser } from "./Leaderboard";
+
 import {
     Table,
     TableBody,
@@ -22,12 +24,32 @@ import {
     AvatarFallback,
     AvatarImage,
   } from "@/components/ui/avatar";
+import { useEffect, useState } from "react";
+import { Leaderboard } from "./Leaderboard";
+import { Skeleton } from "./ui/skeleton";
 
 interface DashboardProps extends React.HTMLAttributes<HTMLDivElement> {
     user: User|null|undefined;
   }
 
 export const DashBoard = ({user}:DashboardProps) => {
+
+    const [topUsers, setTopUsers] = useState<Object|null>(null);
+    
+    useEffect(()=>{
+      (async()=>{
+          try{
+              const response = await fetch("/api/leaderboard");
+              const data = await response.json();
+              console.log(data);
+              setTopUsers(data);
+          }
+          catch(error){
+            console.log("unsble to get leaderboard data\n", error);
+          }
+      })()
+    },[])
+
     return(<section id="dashboard" className="w-full min-h-dvh bg-neutral-900 flex flex-col justify-start items-start px-4 sm:px-12 md:px-20 lg:px-28 xl:px-32 pb-20">
         <h1 className="text-neutral-100 text-xl sm:text-2xl md:text-3xl font-semibold mt-24 mb-1">
             Hello, <span className="text-themeorange">{user?.name}</span><br/>
@@ -66,7 +88,7 @@ export const DashBoard = ({user}:DashboardProps) => {
 
             </span>
             
-            <span id="leaderboard" className="col-start-1 col-span-2 rounded-2xl min-h-[500px] h-full row-start-2 row-end-4 bg-neutral-800 py-6 px-5 md:py-5 md:px-12 flex flex-col justify-start items-center md:items-start">
+            {/* <span id="leaderboard" className="col-start-1 col-span-2 rounded-2xl min-h-[500px] h-full row-start-2 row-end-4 bg-neutral-800 py-6 px-5 md:py-5 md:px-12 flex flex-col justify-start items-center md:items-start">
                     <h1 className="text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-br from-neutral-400 via-neutral-200 to-neutral-500 w-fit font-semibold mt-2 md:mt-5">
                         Leaderbooard
                     </h1>
@@ -77,7 +99,6 @@ export const DashBoard = ({user}:DashboardProps) => {
                         <TableRow className="hover:bg-transparent">
                           <TableHead className="p-2 sm:p-5">#</TableHead>
                           <TableHead className="p-2 sm:p-4">User</TableHead>
-                          <TableHead className="p-2 sm:p-4">Last Played</TableHead>
                           <TableHead className="text-right">Points</TableHead>
                         </TableRow>
                       </TableHeader>
@@ -91,13 +112,18 @@ export const DashBoard = ({user}:DashboardProps) => {
                             </Avatar>
                             Babloo Dabloo
                           </TableCell>
-                          <TableCell className="p-2 sm:p-4">12:34</TableCell>
                           <TableCell className="text-right">650</TableCell>
                         </TableRow>
                       </TableBody>
                     </Table>
-            </span>
-
+            </span> */}
+              {
+                topUsers
+                ?
+                <Leaderboard users={topUsers as LeaderboardUser[]} />
+                :
+                <Skeleton className="w-full h-full min-h-100px opacity-25"/>
+              }
         </div>
     </section>
     )
