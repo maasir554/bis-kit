@@ -66,7 +66,7 @@ const populate = (size) => {
   root.style.setProperty("--grid-size", sizeStr);
 
   // Populate the grid
-  game.innerHTML = "";
+  game.innerHTML = `<audio id="backgroundMusic" src="manak-matchers/assets/music.mp3" loop></audio>`;
   images.forEach((e) => {
     game.innerHTML += `
       <button type="button" class="card" data-image="${e}">
@@ -105,6 +105,10 @@ const PlayPause = () => {
   // console.log("The function PlayPause has bee called!");
 
   if (togglePlayButton.innerText == "Play Again") {
+
+    const music = document.getElementById("backgroundMusic"); // Get the audio element
+    music.play(); // Pause the music
+
     pairedCards = []; // reset the array of paired cards
     manuallyOpenedCards = [];
     populate(gridSize);
@@ -138,6 +142,7 @@ const PlayPause = () => {
   } else {
     // console.log("just before you clicked button, gameIsRunning was FALSE");
     runGame(); // defined in app.js
+    
     gameIsRunning = true;
     togglePlayButton.innerText = "Pause";
     root.style.setProperty("--menu-btn-primary", "rgb(10 80 0)");
@@ -162,6 +167,9 @@ const VictoryChecker = () => {
   // gridSize can be found in data.js
     if (pairedCards.length == gridSize ** 2) {
 
+      const music = document.getElementById("backgroundMusic"); // Get the audio element
+      music.currentTime = 0; // Start the music from the beginning
+      music.pause(); // Pause the musi
 
       window.parent.postMessage({
         type: 'SUBMIT_SCORE',
@@ -418,6 +426,9 @@ const cardLogic = () => {
 };
 
 function runGame() {
+  const music = document.getElementById("backgroundMusic"); // Get the audio element
+  music.play(); // Pause the music
+  
   gameCards.forEach((e) => {
     if (!pairedCards.includes(e)) {
       e.addEventListener("click", sideFlipper);
@@ -433,6 +444,10 @@ function runGame() {
 }
 
 function pauseGame() {
+
+  const music = document.getElementById("backgroundMusic"); // Get the audio element
+  music.pause(); // Pause the music
+
   gameCards.forEach((e) => {
     e.removeEventListener("click", sideFlipper); // flip the card on click
     e.removeEventListener("click", cardLogic); // this will run cardLogic, every time you click a card.
