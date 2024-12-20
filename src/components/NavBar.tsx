@@ -22,10 +22,11 @@ import {
 import { Skeleton } from "./ui/skeleton";
 
 import { User } from "next-auth";
+import Image from "next/image";
 
-const LoginSignupBox = ({onClick}:{onClick:MouseEventHandler}) => (
+const LoginSignupBox = ({onClick, classNameForSignup}:{onClick:MouseEventHandler, classNameForSignup?:string}) => (
   <span className="flex flex-row gap-2 items-center justify-center font-normal">
-  <Link onClick={onClick} href="/signup" className="hover:underline text-sm font-semibold md:text-base px-2 md:px-4 py-1 md:py-2 rounded-full bg-transparent active:scale-95">
+  <Link onClick={onClick} href="/signup" className={"hover:underline text-sm font-semibold md:text-base px-2 md:px-4 py-1 md:py-2 rounded-full bg-transparent active:scale-95 " + classNameForSignup}>
     Signup
   </Link>
 
@@ -141,20 +142,20 @@ export const NavBar = ({userFromProps}:{userFromProps:User|undefined|null}) => {
         href={"/"} 
         className=
         {
-        " text-neutral-300 font-semibold"
+        " text-neutral-300 font-semibold flex flex-row justify-center items-center"
           +" "+
-        (isClient&&isOpen?"text-4xl w-full text-center animate-[fadeanim_0.5s_ease]":"text-base md:text-xl")
+        (isClient&&isOpen?"text-4xl w-full text-center animate-[fadeanim_0.5s_ease] ":"text-base md:text-xl")
         }
         >
-          Bis<span className="text-themeblue">Kit</span>
+          <Image src={"/biskit-logo.png"} className="mr-2" width={25} height={25} alt="logo"></Image>
+          BIS<span className="text-sky-400">Kit</span>
         </Link>
 
-        <span className={`${isOpen?"flex flex-col flex-[0.65] text-xl h-auto animate-[fadeanim_1s_ease]":"hidden"} md:flex md:flex-row gap-2 md:gap-4 lg:gap-6 justify-start items-center font-normal md:flex-1 md:h-full md:pl-4`}>
+        <span className={`${isOpen?"flex flex-col flex-[0.3] text-md font-semibold h-auto animate-[fadeanim_1s_ease]":"hidden"} md:flex md:flex-row gap-2 md:gap-4 lg:gap-6 justify-start items-center font-normal md:flex-1 md:h-full md:pl-4`}>
             <Link className="hover:text-themeblue transition-colors h-full flex items-center whitespace-nowrap" href={"/"} onClick = {()=>setIsOpen(false)} >Home</Link>
-            <Link className="hover:text-themeblue transition-colors h-full flex items-center whitespace-nowrap" href={"/about"} onClick = {()=>setIsOpen(false)} >About</Link>
             <Link className="hover:text-themeblue transition-colors h-full flex items-center whitespace-nowrap" href={"/games"} onClick = {()=>setIsOpen(false)} >Games</Link>
-            <Link className="hover:text-themeblue transition-colors h-full flex items-center whitespace-nowrap" href={"/leaderboard"} onClick = {()=>setIsOpen(false)} >Leaderboard</Link>
-            <Link className="hover:text-themeblue transition-colors h-full flex items-center whitespace-nowrap" href={"/team"} onClick = {()=>setIsOpen(false)} >Our Team</Link>
+            {/* dashboard and home func */}
+
         </span>
         
         <span className={"md:flex" + " " + (isOpen?"flex animate-[fadeanim_1s_ease]":"hidden")}>
@@ -184,7 +185,7 @@ export const NavBar = ({userFromProps}:{userFromProps:User|undefined|null}) => {
               ?
               <UserProfileBox userFromProps={user} classNameOfProfilePic="w-7 h-7" />
               :
-              <LoginSignupBox onClick={()=>setIsOpen(false)}/>
+              <LoginSignupBox onClick={()=>setIsOpen(false)} classNameForSignup="hidden" />
             }
           </span>
           }

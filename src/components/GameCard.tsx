@@ -27,7 +27,7 @@ export const GameCard = ({heading, description, imgLink, instructions, gameLink,
 
                 <button 
                 onClick={()=>setIsDescriptionOpen(true)}
-                className="active:bg-opacity-85 w-full p-1 py-3 sm-p-2 md:p-3 bg-transparent border-2 border-white rounded-full text-center hover:bg-white hover:text-black  transition-colors whitespace-nowrap" 
+                className="active:bg-opacity-85 w-full p-1 py-3 sm:p-2 md:p-3 bg-transparent border-2 border-white rounded-full text-center hover:bg-white hover:text-black  transition-colors whitespace-nowrap" 
                 >
                     How to Play
                 </button>
