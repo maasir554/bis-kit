@@ -70,7 +70,7 @@ const UserProfileBox = ({userFromProps, classNameOfProfilePic}:{userFromProps:Us
 
   return (
       <DropdownMenu>
-        <DropdownMenuTrigger className={"flex flex-row justify-center gap-2 py-1 pl-5 rounded-full "+ bgClassName}>
+        <DropdownMenuTrigger className={"flex flex-row justify-center gap-2 py-1 pl-5 rounded-full pr-1 "+ bgClassName}>
         
         <span className="flex flex-row gap-2 justify-center items-center h-full">
             <span className="w-5 h-5 rounded-full bg-gradient-to-br from-yellow-500 to-amber-700 border-black border-2">
@@ -88,7 +88,7 @@ const UserProfileBox = ({userFromProps, classNameOfProfilePic}:{userFromProps:Us
             </div>
         </span>
         
-        <Avatar className={"w-16 h-16 md:w-10 md:h-10 "+classNameOfProfilePic} >         
+        <Avatar className={"w-16 h-16 md:w-10 md:h-10 border-[1px] border-black "+classNameOfProfilePic} >         
             <AvatarImage src= {user.image ? (user.image) : "https://github.com/shadcn.png"} />  
            <AvatarFallback>{user?.name}</AvatarFallback>
            </Avatar>
