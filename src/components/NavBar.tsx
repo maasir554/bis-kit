@@ -174,7 +174,7 @@ export const NavBar = ({userFromProps}:{userFromProps:User|undefined|null}) => {
 
 
         {/* profile /loginsignup for short devices */}
-        <span className="flex justify-center items-center gap-2">
+        <span className="flex justify-center items-center gap-2 md:hidden">
 
           {
             !isOpen && 
