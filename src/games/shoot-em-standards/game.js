@@ -33,14 +33,14 @@ let lastsessionscore = 0;
 function preload() {
   // Load sound effects
   gameState = "loading";
-  soundWrong = loadSound('shoot-em-standards/assets/wrong.wav');
-  soundPop = loadSound('shoot-em-standards/assets/pop.wav');
-  soundBackground = loadSound('shoot-em-standards/assets/background.mp3');
+  soundWrong = loadSound('/assets/wrong.wav');
+  soundPop = loadSound('/assets/pop.wav');
+  soundBackground = loadSound('/assets/background.mp3');
   soundPop.setVolume(0.3);
-  bislogo = loadImage('shoot-em-standards/assets/default.png');
+  bislogo = loadImage('/assets/default.png');
   
   // Load CSV file
-  let data = loadTable("shoot-em-standards/assets/data.csv", "csv", "header", () => {
+  let data = loadTable("/assets/data.csv", "csv", "header", () => {
     let rowCount = data.getRowCount();
     let selectedRows = []; // To store randomly selected rows
     sampleSize = 18; // Number of rows to randomly select (adjust as needed)
@@ -75,7 +75,7 @@ function preload() {
   });
 
   // Load the sprite sheet for the balloon pop animation
-  popSpriteSheet = loadImage('shoot-em-standards/assets/pop_spritesheet.png'); // Replace with your sprite sheet path
+  popSpriteSheet = loadImage('/assets/pop_spritesheet.png'); // Replace with your sprite sheet path
 }
 
 function assetLoaded() {
