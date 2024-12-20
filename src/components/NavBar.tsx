@@ -25,17 +25,17 @@ import { User } from "next-auth";
 
 const LoginSignupBox = ({onClick}:{onClick:MouseEventHandler}) => (
   <span className="flex flex-row gap-2 items-center justify-center font-normal">
-  <Link onClick={onClick} href="/signup" className="hover:underline px-4 py-4 md:py-2 rounded-full bg-transparent active:scale-95">
+  <Link onClick={onClick} href="/signup" className="hover:underline text-sm font-semibold md:text-base px-4 py-1 md:py-2 rounded-full bg-transparent active:scale-95">
     Signup
   </Link>
 
-  <Link onClick={onClick} href="/login" className="hover:underline px-8 md:px-6 py-3 md:py-2 lg:px-10 rounded-full bg-gradient-to-r from-themeblue to-themeorange hover:from-themeorange hover:bg-themeblue bg-opacity-75 active:scale-95">
+  <Link onClick={onClick} href="/login" className="hover:underline text-sm font-semibold md:text-base px-8 md:px-6 py-1 md:py-2 lg:px-10 rounded-full bg-gradient-to-r from-themeblue to-themeorange hover:from-themeorange hover:bg-themeblue bg-opacity-75 active:scale-95">
     Login
   </Link>
 </span>
 );
 
-const UserProfileBox = ({userFromProps}:{userFromProps:User}) => {
+const UserProfileBox = ({userFromProps, classNameOfProfilePic}:{userFromProps:User, classNameOfProfilePic?:string}) => {
 
   const user = userFromProps;
 
@@ -87,7 +87,7 @@ const UserProfileBox = ({userFromProps}:{userFromProps:User}) => {
             </div>
         </span>
         
-        <Avatar className="w-16 h-16 md:w-10 md:h-10" >         
+        <Avatar className={"w-16 h-16 md:w-10 md:h-10 "+classNameOfProfilePic} >         
             <AvatarImage src= {user.image ? (user.image) : "https://github.com/shadcn.png"} />  
            <AvatarFallback>{user?.name}</AvatarFallback>
            </Avatar>
@@ -135,7 +135,7 @@ export const NavBar = ({userFromProps}:{userFromProps:User|undefined|null}) => {
   },[])
 
   return(
-        <nav className={`overflow-hidden z-50 backdrop-blur-lg fixed left-1/2 -translate-x-1/2 bg-opacity-10 bg-neutral-200 flex flex-row items-center gap-4 lg:gap-6 xl:gap-10 w-11/12 md:w-10/12 rounded-b-xl h-10 md:h-16 px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 text-md md:text-xs lg:text-sm transition-all duration-300 ease-in-out ${isOpen?"top-0 bottom-0 rounded-none flex-col py-10 bg-opacity-75 bg-neutral-900 w-screen h-screen justify-center":"top-0 justify-between "} `}>
+        <nav className={`overflow-hidden z-50 backdrop-blur-lg fixed left-1/2 -translate-x-1/2 bg-opacity-10 bg-neutral-200 flex flex-row items-center gap-4 lg:gap-6 xl:gap-10 w-11/12 md:w-10/12 rounded-b-xl h-[50px] md:h-16 px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 text-md md:text-xs lg:text-sm transition-all duration-300 ease-in-out ${isOpen?"top-0 bottom-0 rounded-none flex-col py-10 bg-opacity-75 bg-neutral-900 w-screen h-screen justify-center":"top-0 justify-between "} `}>
         <Link 
         onClick={()=>setIsOpen(false)}
         href={"/"} 
@@ -161,33 +161,52 @@ export const NavBar = ({userFromProps}:{userFromProps:User|undefined|null}) => {
 
         {/* Box for showing login and signup links */}
         {
-          user
+          !!user
           ?
           <UserProfileBox userFromProps={user} />
           :
           <LoginSignupBox onClick={()=>setIsOpen(false)}/>
         }
         </span>
-
+        
         {/* the menu button for mobile devices */}
 
-        <span 
-        className=
-        {
-          "text-xs hover:bg-white cursor-pointer hover:bg-opacity-15 aspect-square hover:text-themeorange flex md:hidden md:p-1 transition-colors active:scale-90 justify-center items-center"
-        + " " +
-        (isClient&&isOpen?"w-12 bg-neutral-700 rounded-full border-2 border-neutral-600 mt-5":"rounded-lg w-7 md:w-8")
-        }
-        onClick = {toggleMenuOpen}
-        >
+
+        {/* profile /loginsignup for short devices */}
+        <span className="flex justify-center items-center gap-2">
+
           {
-          isOpen
-          ?
-          <X className="w-full"/>
-          :
-          <Menu className="w-full" />
+            !isOpen && 
+
+            <span className="flex md:hidden">
+            {
+              !!user
+              ?
+              <UserProfileBox userFromProps={user} classNameOfProfilePic="w-7 h-7" />
+              :
+              <LoginSignupBox onClick={()=>setIsOpen(false)}/>
+            }
+          </span>
           }
-        </span>        
+
+          <span 
+          className=
+          {
+            "text-xs hover:bg-white cursor-pointer hover:bg-opacity-15 aspect-square hover:text-themeorange flex md:hidden md:p-1 transition-colors active:scale-90 justify-center items-center"
+          + " " +
+          (isClient&&isOpen?"w-12 bg-neutral-700 rounded-full border-2 border-neutral-600 mt-5":"rounded-lg w-7 md:w-8")
+          }
+          onClick = {toggleMenuOpen}
+          >
+            {
+            isOpen
+            ?
+            <X className="w-full"/>
+            :
+            <Menu className="w-full" />
+            }
+          </span>        
+        </span>
 
     </nav>
     )

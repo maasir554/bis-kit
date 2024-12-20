@@ -725,7 +725,7 @@ class Balloon {
     this.popAnimationComplete = false; // To track animation completion
     this.speed = (random(0.1, 0.3) * deltaTime)/window.devicePixelRatio; // Rising speed
     //pixel density of the window
-    console.log(window.devicePixelRatio);
+    // console.log(window.devicePixelRatio);
     this.angle = 0; // For wobble effect
   }
 
