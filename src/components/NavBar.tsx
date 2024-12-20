@@ -25,11 +25,11 @@ import { User } from "next-auth";
 
 const LoginSignupBox = ({onClick}:{onClick:MouseEventHandler}) => (
   <span className="flex flex-row gap-2 items-center justify-center font-normal">
-  <Link onClick={onClick} href="/signup" className="hover:underline text-sm font-semibold md:text-base px-4 py-1 md:py-2 rounded-full bg-transparent active:scale-95">
+  <Link onClick={onClick} href="/signup" className="hover:underline text-sm font-semibold md:text-base px-2 md:px-4 py-1 md:py-2 rounded-full bg-transparent active:scale-95">
     Signup
   </Link>
 
-  <Link onClick={onClick} href="/login" className="hover:underline text-sm font-semibold md:text-base px-8 md:px-6 py-1 md:py-2 lg:px-10 rounded-full bg-gradient-to-r from-themeblue to-themeorange hover:from-themeorange hover:bg-themeblue bg-opacity-75 active:scale-95">
+  <Link onClick={onClick} href="/login" className="hover:underline text-sm font-semibold md:text-base px-4 md:px-6 py-1 md:py-2 lg:px-10 rounded-full bg-gradient-to-r from-themeblue to-themeorange hover:from-themeorange hover:bg-themeblue bg-opacity-75 active:scale-95">
     Login
   </Link>
 </span>
