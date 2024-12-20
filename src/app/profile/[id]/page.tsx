@@ -1,9 +1,9 @@
 
-import { useSession } from "next-auth/react"
+// import { useSession } from "next-auth/react"
 
 export default async function page({params}:{params:Promise<{id:string}>}){
 
-    const session = useSession()
+    // const session = useSession()
 
     const {id} = await params
 
