@@ -1,5 +1,6 @@
 
 import { redirect } from 'next/navigation'
+import { BsLinkedin, BsTwitterX, BsInstagram } from "react-icons/bs";
 
 import { updateUserSocialMediaLink } from "@/actions/socialMedia";
 
@@ -61,17 +62,26 @@ export default async function page({params}:{params:Promise<{id:string}>}){
                             <span className="text-xl font-semibold whitespace-nowrap">{profileUser?.currentTotalPoints} points</span>
                         </div>
 
+                        <span className='font-semibold text-themeblue border-b-2 border-themeblue whitespace-nowrap'>
+                            Social media profile links:
+                        </span>
+
                         {!!profileUser?.socialLinks?.linkedin?
                         <div className="flex flex-row gap-4 items-center justify-center">
                             <Link target="_" href={profileUser?.socialLinks?.linkedin} className="flex flex-row flex-nowrap gap-3 items-center hover:text-sky-600 transition pl-4">
-                                <span className="text-lg font-semibold">Linkedin </span>
+                                <span className="text-lg font-semibold flex justify-center items-center gap-2 flex-nowrap">
+                                <BsLinkedin />
+                                    Linkedin 
+                                </span>
                                 {/* <span className="text-xl font-semibold">{profileUser?.currentTotalPoints}</span> */}
                                 <SquareArrowOutUpRight />
                             </Link>
                             {
                                 !!isOwnProfile&&
                                 <Popover>
-                                <PopoverTrigger className="text-xs font-semibold bg-neutral-800 px-4 py-1 rounded-full active:scale-95 hover:bg-neutral-600 whitespace-nowrap flex items-center">Edit</PopoverTrigger>
+                                <PopoverTrigger className="text-xs font-semibold bg-neutral-800 px-4 py-1 rounded-full active:scale-95 hover:bg-neutral-600 whitespace-nowrap flex items-center">
+                                    Edit
+                                </PopoverTrigger>
                                 <PopoverContent className="bg-neutral-900 text-white border-2  border-neutral-500">
                                     <form action={linkdeInAction}>
                                         <Input className="bg-transparent" name="profileLink" placeholder="Enter your Linkedin profile link" />
@@ -99,7 +109,10 @@ export default async function page({params}:{params:Promise<{id:string}>}){
                         {!!profileUser?.socialLinks?.twitter?
                         <div className="flex flex-row gap-4 items-center justify-center">
                             <Link target="_" href={profileUser?.socialLinks?.twitter} className="flex flex-row flex-nowrap gap-3 items-center hover:text-sky-600 transition pl-4">
-                                <span className="text-lg font-semibold">{"X(Twitter)"}</span>
+                                <span className="text-lg font-semibold flex justify-center items-center gap-2 flex-nowrap">
+                                    <BsTwitterX/>
+                                    {"X(Twitter)"}
+                                </span>
                                 {/* <span className="text-xl font-semibold">{profileUser?.currentTotalPoints}</span> */}
                                 <SquareArrowOutUpRight />
                             </Link>
@@ -134,7 +147,10 @@ export default async function page({params}:{params:Promise<{id:string}>}){
                         {!!profileUser?.socialLinks?.instagram?
                         <div className="flex flex-row gap-4 items-center justify-center">    
                             <Link target="_" href={profileUser?.socialLinks?.instagram} className="flex flex-row flex-nowrap gap-3 items-center hover:text-sky-600 transition pl-4">
-                                <span className="text-lg font-semibold">Instagram </span>
+                                <span className="text-lg font-semibold flex justify-center items-center gap-2 flex-nowrap">
+                                    <BsInstagram/>
+                                    Instagram 
+                                </span>
                                 {/* <span className="text-xl font-semibold">{profileUser?.currentTotalPoints}</span> */}
                                 <SquareArrowOutUpRight />
                             </Link>
