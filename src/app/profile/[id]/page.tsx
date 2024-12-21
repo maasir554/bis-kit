@@ -55,10 +55,10 @@ export default async function page({params}:{params:Promise<{id:string}>}){
 
                 <div className="flex flex-row gap-6 justify-center items-center flex-wrap">
                     <Image className={` w-[50vw] max-w-[175px] rounded-full p-[1px] border-8 border-${getLeagueColor(profileUser?.currentTotalPoints||0)}`} src={profileUser?.profilepiclink || "https://github.com/shadcn.png"} width={100} height={100} alt="avatar" />
-                    <div className="flex flex-col gap-4 flex-nowrap flex-1">
+                    <div className="flex flex-col items-center gap-4 flex-nowrap flex-1">
                         <div className="flex flex-row flex-nowrap gap-3 items-center justify-center">
                             <span className="w-8 h-8 rounded-full border-2 border-white bg-gradient-to-br from-yellow-500 to-yellow-700 "></span>
-                            <span className="text-xl font-semibold">{profileUser?.currentTotalPoints} points</span>
+                            <span className="text-xl font-semibold whitespace-nowrap">{profileUser?.currentTotalPoints} points</span>
                         </div>
 
                         {!!profileUser?.socialLinks?.linkedin?
@@ -93,7 +93,7 @@ export default async function page({params}:{params:Promise<{id:string}>}){
                             </PopoverContent>
                         </Popover>
                         :
-                        (<>Linkedin link not provided</>)
+                        (<div className='opacity-40 text-center w-full pl-4 text-xs whitespace-nowrap'>Linkedin link not provided</div>)
                         }
                         
                         {!!profileUser?.socialLinks?.twitter?
@@ -128,7 +128,7 @@ export default async function page({params}:{params:Promise<{id:string}>}){
                           </PopoverContent>
                         </Popover>
                         :
-                        <>X(Twitter) link not provided</>
+                        <div className='opacity-40 text-center w-full pl-4 text-xs whitespace-nowrap'>X(Twitter) link not provided</div>
                         }
                         
                         {!!profileUser?.socialLinks?.instagram?
@@ -163,7 +163,7 @@ export default async function page({params}:{params:Promise<{id:string}>}){
                           </PopoverContent>
                         </Popover>
                         :
-                        <>instagram link not provided</>
+                        <div className='opacity-40 text-center w-full pl-4 text-xs whitespace-nowrap'>instagram link not provided</div>
                         }
                     </div>
                 </div>
