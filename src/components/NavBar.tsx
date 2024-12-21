@@ -152,8 +152,15 @@ export const NavBar = ({userFromProps}:{userFromProps:User|undefined|null}) => {
         </Link>
 
         <span className={`${isOpen?"flex flex-col flex-[0.3] text-md font-semibold h-auto animate-[fadeanim_1s_ease]":"hidden"} md:flex md:flex-row gap-2 md:gap-4 lg:gap-6 justify-start items-center font-normal md:flex-1 md:h-full md:pl-4`}>
-            <Link className="hover:text-themeblue transition-colors h-full flex items-center whitespace-nowrap" href={"/"} onClick = {()=>setIsOpen(false)} >Home</Link>
+            {
+              !!user &&
+              
+              <Link className="hover:text-themeblue transition-colors h-full flex items-center whitespace-nowrap" href={"/dashboard"} onClick = {()=>setIsOpen(false)} >Dashboard</Link>
+            }
+            <Link className="hover:text-themeblue transition-colors h-full flex items-center whitespace-nowrap" href={"/home"} onClick = {()=>setIsOpen(false)} >Home</Link>
             <Link className="hover:text-themeblue transition-colors h-full flex items-center whitespace-nowrap" href={"/games"} onClick = {()=>setIsOpen(false)} >Games</Link>
+            
+            
             {/* dashboard and home func */}
 
         </span>

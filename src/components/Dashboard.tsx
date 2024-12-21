@@ -1,9 +1,9 @@
 "use client"
 
-// import { ArrowUpRight } from "lucide-react";
+
 import { StandardOfTheDay } from "./StandardOfTheDay";
 import { User } from "next-auth"
-// import Link from "next/link";
+
 import { GameCard } from "./GameCard";
 import { gameCardsData } from "./CONSTANTS";
 
@@ -11,7 +11,6 @@ import { LeaderboardUser } from "./Leaderboard";
 
 import { useEffect, useState } from "react";
 import { Leaderboard } from "./Leaderboard";
-import { Skeleton } from "./ui/skeleton";
 
 interface DashboardProps extends React.HTMLAttributes<HTMLDivElement> {
     user: User|null|undefined;
@@ -73,42 +72,8 @@ export const DashBoard = ({user}:DashboardProps) => {
 
             </span>
             
-            {/* <span id="leaderboard" className="col-start-1 col-span-2 rounded-2xl min-h-[500px] h-full row-start-2 row-end-4 bg-neutral-800 py-6 px-5 md:py-5 md:px-12 flex flex-col justify-start items-center md:items-start">
-                    <h1 className="text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-br from-neutral-400 via-neutral-200 to-neutral-500 w-fit font-semibold mt-2 md:mt-5">
-                        Leaderbooard
-                    </h1>
-
-                    <Table className="mt-5 text- text-xs md:text-sm">
-                      <TableCaption>Play now to have your name here!</TableCaption>
-                      <TableHeader>
-                        <TableRow className="hover:bg-transparent">
-                          <TableHead className="p-2 sm:p-5">#</TableHead>
-                          <TableHead className="p-2 sm:p-4">User</TableHead>
-                          <TableHead className="text-right">Points</TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        <TableRow className="hover:bg-yellow-950 hover:bg-opacity-30 cursor-pointer">
-                          <TableCell className="p-2 sm:p-4 font-medium">1</TableCell>
-                          <TableCell className="p-2 sm:p-4 flex flex-row items-center gap-4">
-                             <Avatar>
-                                <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                                <AvatarFallback>CN</AvatarFallback>
-                            </Avatar>
-                            Babloo Dabloo
-                          </TableCell>
-                          <TableCell className="text-right">650</TableCell>
-                        </TableRow>
-                      </TableBody>
-                    </Table>
-            </span> */}
-              {
-                topUsers
-                ?
-                <Leaderboard users={topUsers as LeaderboardUser[]} />
-                :
-                <Skeleton className="w-full h-full min-h-100px opacity-25"/>
-              }
+            <Leaderboard users={topUsers as LeaderboardUser[]} />
+             
         </div>
     </section>
     )

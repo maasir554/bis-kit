@@ -55,7 +55,7 @@ export const StandardOfTheDay = () => {
 
                         <span className="text-sm mb-4 ">
                             <h1 className="text-sm md:text-md lg:text-lg font-semibold text-white pl-2">Service or Equipment: </h1>
-                            <p className=" text-xs md:text-sm lg:text-base pl-4">
+                            <p className=" text-xs md:text-sm lg:text-base pl-2">
                             {/* {"Audio Visual Equipment like Television, Speakers, Printers, Scanners etc"} */}
                             {standard["SERVICE/EQUIPMENT"]}
                             </p>
@@ -64,7 +64,7 @@ export const StandardOfTheDay = () => {
                         <h3 className="font-semibold text-white text-sm md:text-md lg:text-lg pl-2">
                             Description:
                         </h3>
-                        <p className="text-xs md:text-sm lg:text-base font-normal text-neutral-100 mb-5 pl-4">
+                        <p className="text-xs md:text-sm lg:text-base font-normal text-neutral-100 mb-5 pl-2">
                             {
                                 // "The        Standard        provides        safety requirements for audio video equipments against          Hazards  like  electric  shock, mechanical, radiation, fire, implosion and chemical burns."
                                 standard["field5"]

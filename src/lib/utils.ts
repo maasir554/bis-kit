@@ -42,3 +42,24 @@ export async function getTodayStandard() {
   return standards[tracker.currentIndex]
 }
 
+
+export async function getUserById (userId:string) {
+  try{
+      const user = await prisma.user.findFirst({
+      where:{
+        id: userId
+      },
+      select:{
+        name:true,
+        currentTotalPoints:true,
+        socialLinks:true,
+        profilepiclink: true
+      }
+      });
+      return user;
+  }
+  catch(err){
+    console.log("user not found ",err);
+    throw Error("not able to find user");
+  }
+}
