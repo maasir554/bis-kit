@@ -105,7 +105,11 @@ const UserProfileBox = ({userFromProps, classNameOfProfilePic}:{userFromProps:Us
             </p> 
           </DropdownMenuLabel>
           <DropdownMenuSeparator className="bg-neutral-600"/>
-          <DropdownMenuItem>Profile</DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link className="w-full h-full" href={`/profile/${user.id}`}>
+            Profile
+            </Link>
+          </DropdownMenuItem>
           <DropdownMenuItem onClick={()=>signOut()} className="text-red-400 hover:text-red-900 hover:bg-black">
               Logout
           </DropdownMenuItem>
