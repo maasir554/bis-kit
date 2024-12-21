@@ -93,7 +93,7 @@ export default async function page({params}:{params:Promise<{id:string}>}){
                             </PopoverContent>
                         </Popover>
                         :
-                        (<></>)
+                        (<>Linkedin link not provided</>)
                         }
                         
                         {!!profileUser?.socialLinks?.twitter?
@@ -128,7 +128,7 @@ export default async function page({params}:{params:Promise<{id:string}>}){
                           </PopoverContent>
                         </Popover>
                         :
-                        <></>
+                        <>X(Twitter) link not provided</>
                         }
                         
                         {!!profileUser?.socialLinks?.instagram?
