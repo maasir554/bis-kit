@@ -3,13 +3,13 @@
 // import { getTodayStandard } from '@/lib/utils'
 import { getCurrentHighestScorers } from '@/lib/score-utils'
 import { NextResponse } from 'next/server'
-import { auth } from '@/auth'
+// import { auth } from '@/auth'
 
 export const GET = async () => {
     
-  const session = await auth() 
+  // const session = await auth() 
 
-  if(!session) return NextResponse.json({message:"Unauthorized request"},{status:401})
+  // if(!session) return NextResponse.json({message:"Unauthorized request"},{status:401})
 
   try {
     // const standard = await getTodayStandard()

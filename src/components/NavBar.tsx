@@ -88,10 +88,13 @@ const UserProfileBox = ({userFromProps, classNameOfProfilePic}:{userFromProps:Us
             </div>
         </span>
         
-        <Avatar className={"w-16 h-16 md:w-10 md:h-10 border-[1px] border-black "+classNameOfProfilePic} >         
+        {/* <Avatar className={"w-16 h-16 md:w-10 md:h-10 border-[1px] border-black "+classNameOfProfilePic} >         
             <AvatarImage src= {user.image ? (user.image) : "https://github.com/shadcn.png"} />  
            <AvatarFallback>{user?.name}</AvatarFallback>
-           </Avatar>
+           </Avatar> */}
+
+          <Image className={"w-16 h-16 md:w-10 md:h-10 border-[1px] border-black rounded-full "+classNameOfProfilePic} src= {user.image ? (user.image) : "https://github.com/shadcn.png"} alt={user.name||"username"} width={50} height={50} />
+
         </DropdownMenuTrigger>
           <DropdownMenuContent className="bg-neutral-800 text-white border-neutral-600 px-5 py-5">
           <DropdownMenuLabel className="flex flex-col gap-2">

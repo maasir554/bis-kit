@@ -13,8 +13,10 @@ export default auth((req) => {
   
   // Check if the requested path is a protected route
   const isProtectedRoute = !publicRoutes.includes(nextUrl.pathname) && 
-    (nextUrl.pathname.startsWith('/dashboard') || 
-     nextUrl.pathname.startsWith('/profile'));
+    (nextUrl.pathname.startsWith('/dashboard') 
+    // || 
+    //  nextUrl.pathname.startsWith('/profile')
+    );
 
   if (isProtectedRoute && !isLoggedIn) {
     // Redirect to login page with callback URL
