@@ -20,7 +20,7 @@ export const HomePage = () => (
                 
                 <div className="relative overflow-visible w-min">
                     <Image src="/mascot-wave.gif" width={200} height={200} alt="mascot" className="min-w-[150px] w-[35%] sm:w-[150px] md:w-[180px] lg:w-[200px] mb-14" />
-                    <span className="absolute top-0 left-[95%] rounded-xl w-auto whitespace-nowrap px-4 py-2  text-4xl font-bold">
+                    <span className="absolute top-[-20px] left-[105%] rounded-xl- w-auto whitespace-nowrap px-4 py-2 bg-gradient-to-r from-themeblue to-themeorange text-4xl font-bold  rounded-full">
                         Hi!
                     </span>
                 </div>
