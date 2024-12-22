@@ -40,7 +40,7 @@ export const HomePage = () => (
             </div>
         </div>
 
-        <div id="top-players" className=" flex flex-col items-center" >
+        <div id="top-players" className=" flex flex-col items-center pb-20" >
             <h1 className="sm:text-4xl md:text-5xl mb-3 w-fit text-center font-semibold text-transparent bg-clip-text bg-gradient-to-r from-white to-neutral-400 ">
                 Meet the top scorers
             </h1>
