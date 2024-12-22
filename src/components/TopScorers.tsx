@@ -23,8 +23,8 @@ const [leaderboard, setLeaderboard] = useState
         name: string,
         profilepiclink: string | null,
         currentTotalPoints: number | null
-    }[] | undefined
-    >(undefined);
+    }[] | undefined|null
+    >(null);
 
 useEffect(()=>{
     (async()=>{
@@ -80,7 +80,7 @@ return (
                                 Rank {idx+1}
                             </span>
                             <span className='font-medium text-sm sm:text-lg md:text-xl flex flex-row items-center gap-2'>
-                                {user?.name!}
+                                {user?.name}
                                 <SquareArrowOutUpRightIcon/>
                             </span>
                             <span className='flex flex-row gap-3 justify-start items-center'>
