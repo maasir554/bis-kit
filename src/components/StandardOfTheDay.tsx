@@ -50,7 +50,7 @@ export const StandardOfTheDay = () => {
                             {standard["ISO NAME"]}
                         </span>
                         <span className="text-xs md:text-sm font-semibold mb-2 text-neutral-200">
-                            Reviewed in : {standard["REVIEW YEAR"]}
+                            {standard["REVIEW YEAR"]}
                         </span>
 
                         <span className="text-sm mb-4 ">
