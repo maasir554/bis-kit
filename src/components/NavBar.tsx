@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+// import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Menu, X } from "lucide-react";
 
 import { signOut } from "next-auth/react";
