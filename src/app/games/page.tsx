@@ -4,7 +4,7 @@ import { GameCard } from "@/components/GameCard"
 export default async function page(){
 return(
 
-<section className="w-full h-hull flex flex-col mt-32 ">
+<section className="w-full h-full min-h-screen flex flex-col mt-32 ">
     <h1 className="text-4xl font-semibold w-full text-center mb-10 ">
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-neutral-100 to-neutral-300">
             Games

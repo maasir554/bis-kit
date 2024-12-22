@@ -3,6 +3,7 @@ import { NavBar } from "@/components/NavBar";
 import { Toaster } from "@/components/ui/sonner"
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
+import { Footer } from "@/components/Footer";
 
 import "./globals.css";
 
@@ -36,6 +37,7 @@ export default async function RootLayout({
             }
           }}
         />
+        <Footer/>
       </body>
       </SessionProvider>
     </html>

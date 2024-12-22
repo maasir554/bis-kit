@@ -11,6 +11,7 @@ import { LeaderboardUser } from "./Leaderboard";
 
 import { useEffect, useState } from "react";
 import { Leaderboard } from "./Leaderboard";
+import { Skeleton } from "./ui/skeleton";
 
 interface DashboardProps extends React.HTMLAttributes<HTMLDivElement> {
     user: User|null|undefined;
@@ -19,7 +20,9 @@ interface DashboardProps extends React.HTMLAttributes<HTMLDivElement> {
 export const DashBoard = ({user}:DashboardProps) => {
 
     const [topUsers, setTopUsers] = useState<LeaderboardUser[]|null>(null);
+    const [dbUser, setDbuser] = useState<LeaderboardUser|null>(null);
     
+
     useEffect(()=>{
       (async()=>{
           try{
@@ -33,14 +36,64 @@ export const DashBoard = ({user}:DashboardProps) => {
           }
       })()
     },[])
+    
+    useEffect(()=>{
+      (async()=>{
+          try{
+              const response = await fetch("/api/users/"+user?.id);
+              const data = await response.json();
+              console.log(data);
+              setDbuser(data.totalPoints);
+          }
+          catch(error){
+            console.log("unsble to get user data\n", error);
+          }
+      })()
+    },[])
 
     return(<section id="dashboard" className="w-full min-h-dvh bg-neutral-900 flex flex-col justify-start items-start px-4 sm:px-12 md:px-20 lg:px-28 xl:px-32 pb-20">
         <h1 className="text-neutral-100 text-xl sm:text-2xl md:text-3xl font-semibold mt-24 mb-1">
             Hello, <span className="text-themeorange">{user?.name}</span><br/>
         </h1>
-        <p className="text-xs sm:text-sm md:text-base text-neutral-200 mb-8">
+        
+        <p className="text-xs sm:text-sm md:text-base text-neutral-200">
             Welcome to the dashboard!
         </p>
+        
+        <div className="text-xs sm:text-sm md:text-base text-neutral-200 mb-8">
+            {
+                
+                (dbUser)&&
+                (dbUser?.currentTotalPoints as number > 50)?
+                <span>
+                <p>You are in Gold league</p>
+                </span>
+                :
+                (dbUser?.currentTotalPoints as number > 25)?
+                
+                <span>
+                <p>You are in Silver league</p>
+                <div>
+                    you need {51 - (dbUser?.currentTotalPoints as number)}
+                    more points to enter Gold League
+                </div>
+                </span>
+                :
+                (dbUser?.currentTotalPoints as number >= 0)?
+                <span>
+                    <div>You are in Bronze league</div>
+                    <div>
+                        you need {26 - (dbUser?.currentTotalPoints as number)}
+                        {" more points to enter Silver League"}
+                    </div>
+                </span>
+                
+                :
+                <Skeleton className="w-{95%] min-w-[100px] h-[10px] rounded-lg" />
+                
+            }
+        </div>
+
         <div id="pentogrid"
         className="flex flex-col lg:grid grid-cols-3 gap-4 md:gap-6 lg:gap-8 w-full h-auto "
         >
