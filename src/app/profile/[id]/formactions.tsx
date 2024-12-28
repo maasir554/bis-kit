@@ -20,7 +20,7 @@ export const InstagramAction = async(FormData:FormData, id:string)=>{
 }
 export const userNameAction = async(FormData:FormData, id:string)=>{
     // 'use server'
-    let newName = FormData.get("newName") as string
+    const newName = FormData.get("newName") as string
     if(!!newName && newName.trim() !== ""){
         await updateUserName(id, newName); 
         redirect("/profile/"+id)
