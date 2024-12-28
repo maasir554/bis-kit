@@ -21,11 +21,18 @@ import { Input } from "@/components/ui/input"
 
 import { BsLinkedin, BsTwitterX, BsInstagram } from "react-icons/bs";
 
+
+interface User{
+    name:string|null,
+    socialLinks: {linkedin:string|null,instagram:string|null, twitter:string|null} | null,
+    currentTotalPoints:number|null,
+    profilepiclink:string|null
+}
 const getLeagueColor = (userPoints:number) => userPoints>50 ? "yellow-500" : userPoints>25? "zinc-400" : "yellow-900";
 
 
 
-export const ProfileCard = ({id, profileUser, isOwnProfile}:{id: string,profileUser:any, isOwnProfile:boolean }) => {
+export const ProfileCard = ({id, profileUser, isOwnProfile}:{id: string,profileUser:User|null, isOwnProfile:boolean }) => {
     
     const session = useSession()
 
