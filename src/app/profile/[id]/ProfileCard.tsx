@@ -69,10 +69,10 @@ export const ProfileCard = ({id, profileUser, isOwnProfile}:{id: string,profileU
 
                         }
 
-                        window.location.href = ("/profile2/"+id);
+                        window.location.href = ("/profile/"+id);
                         }
                      } }>
-                        <Input className="bg-transparent" name="profileLink" placeholder="Enter your Linkedin profile link" />
+                        <Input className="bg-transparent" name="profileLink" placeholder="Enter new name" />
                         <button className="w-full p-2 mt-2 rounded-lg font-semibold bg-neutral-200 hover:bg-neutral-50 text-black" type="submit">submit</button>
                     </form>
                 </PopoverContent>
