@@ -43,7 +43,7 @@ export async function GET(
     }
 
     return NextResponse.json({
-      totalPoints: user,
+      userData: user,
     })
   } catch (error) {
     console.error('Error fetching user points:', error)
@@ -54,3 +54,43 @@ export async function GET(
   }
 }
 
+export async function DELETE(request: Request,
+  { params }: { params: Promise<{ userId: string }> }){
+    const {userId} = await params;
+    const session = await auth()
+    
+    if (!session?.user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
+
+    // Check if user is deleting their own account
+    if (session.user.id !== userId) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 })
+    }
+
+    try {
+
+      const user = await prisma.user.delete({
+        where: { id: userId }
+      })
+  
+      if (!user) {
+        return NextResponse.json(
+          { error: "User not found" },
+          { status: 404 }
+        )
+      }
+  
+      return NextResponse.json({
+        status: "deleted",
+        outcome:user,
+      })
+    } catch (error) {
+      console.error('Error deleting the user:', error)
+      return NextResponse.json(
+        { error: "Failed to delete user" },
+        { status: 500 }
+      )
+    }
+
+}

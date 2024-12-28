@@ -20,6 +20,7 @@ import {
 import { Input } from "@/components/ui/input"
 
 import { BsLinkedin, BsTwitterX, BsInstagram } from "react-icons/bs";
+import { ProfileDelete } from "./ProfileDelete"
 
 
 interface User{
@@ -45,7 +46,7 @@ export const ProfileCard = ({id, profileUser, isOwnProfile}:{id: string,profileU
         {
             !!isOwnProfile&&
             <Popover>
-                <PopoverTrigger className="text-xs text-white font-semibold bg-neutral-800 px-4 py-1 rounded-full active:scale-95 hover:bg-neutral-600 whitespace-nowrap flex items-center">
+                <PopoverTrigger className="text-xs text-white m-2 font-semibold bg-neutral-800 px-4 py-1 rounded-full active:scale-95 hover:bg-neutral-600 whitespace-nowrap flex items-center">
                     Edit
                 </PopoverTrigger>
                 <PopoverContent className="bg-neutral-900 text-white border-2  border-neutral-500">
@@ -226,6 +227,12 @@ export const ProfileCard = ({id, profileUser, isOwnProfile}:{id: string,profileU
             <div className='opacity-40 text-center w-full pl-4 text-xs whitespace-nowrap'>instagram link not provided</div>
             }
         </div>
+
     </div>
+    {
+        !!isOwnProfile &&
+
+        <ProfileDelete userId={id} />
+    }
 </section>
 }

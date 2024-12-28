@@ -43,7 +43,7 @@ export const DashBoard = ({user}:DashboardProps) => {
               const response = await fetch("/api/users/"+user?.id);
               const data = await response.json();
               console.log(data);
-              setDbuser(data.totalPoints);
+              setDbuser(data.userData);
           }
           catch(error){
             console.log("unsble to get user data\n", error);
