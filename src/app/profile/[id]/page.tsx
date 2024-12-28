@@ -27,6 +27,7 @@ export default async function page({params}:{params:Promise<{id:string}>}){
                 }
             </> 
     }catch(error){
+        console.log(error);
         return<div className="w-full h-screen text-4xl text-themeorange flex justify-center items-center">
         {"404 - User not found ;-("}
     </div>
