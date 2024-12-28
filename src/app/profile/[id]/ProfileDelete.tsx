@@ -37,7 +37,7 @@ export const ProfileDelete = ({userId}:{userId:string}) => {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogAction className="bg-transparent border-none"
-                onClick={evt=>{
+                onClick={()=>{
                     (async()=>{
                         try{
                             const response = await fetch(`/api/users/${userId}`,
