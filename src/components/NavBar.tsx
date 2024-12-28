@@ -108,8 +108,8 @@ const UserProfileBox = ({userFromProps, classNameOfProfilePic}:{userFromProps:Us
             </p> 
           </DropdownMenuLabel>
           <DropdownMenuSeparator className="bg-neutral-600"/>
-          <DropdownMenuItem>
-            <Link className="w-full h-full" href={`/profile/${user.id}`}>
+          <DropdownMenuItem className="p-0">
+            <Link className="w-full h-full p-1" href={`/profile/${user.id}`}>
             Profile
             </Link>
           </DropdownMenuItem>

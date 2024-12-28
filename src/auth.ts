@@ -108,7 +108,7 @@ callbacks: {
     }
     return true
   },
-  async jwt({token, user, account, profile}){
+  async jwt({token, user, account, profile,trigger, session}){
     
     if(account?.provider === "google"){
       const userFromDb = await prisma.user.findUnique({
@@ -117,12 +117,21 @@ callbacks: {
 
       token.userId = userFromDb?.id;
       token.profilepic = user.image;
+      if(!!userFromDb?.name && userFromDb?.name !== ""){
+        token.name = userFromDb.name
+      }
       return token;
+    }
+    
+    if (trigger === "update" && session?.name) {
+      // Note, that `session` can be any arbitrary object, remember to validate it!
+      token.name = session.name
     }
 
     if(user) {
-      token.userId = user.id
-      token.profilepic= user.image;
+      token.name = user.name
+      token.userId = user.id || profile?.id
+      token.profilepic= user.image || profile?.profilepiclink;
       }
       return token;
     },
@@ -130,14 +139,14 @@ callbacks: {
     async session({session,token}){
       const id = token.userId as string;
       const image = token.profilepic as string;
+      const name= token.name as string;
+      
       session.user.id = id;
       session.user.image = image;
+      session.user.name = name;
 
       return session
     },
   },
-  // session:{
-  //   strategy:"jwt"
-  // }
 
 })

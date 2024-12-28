@@ -32,3 +32,28 @@ export const updateUserSocialMediaLink = async (userId:string,linkName:"linkedin
             }
         });
 }
+
+export const updateUserName = async (userId:string,newName:string) => {
+    
+    const prevRecord = await prisma.user.findUnique({
+        where:{
+            id: userId,
+        },
+        select:{
+            name:true
+        }
+    })
+    
+    if(!!prevRecord && prevRecord.name!==newName && newName !== ""){
+        await prisma.user.update(
+            {
+                where:{
+                    id: userId,
+                },
+                data:{
+                    name: newName,
+                }
+            }
+        );
+    }
+}
