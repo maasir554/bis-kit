@@ -10,6 +10,7 @@ import { useSession } from "next-auth/react"
 import { redirect } from 'next/navigation'
 import { updateUserName, updateUserSocialMediaLink } from "@/actions/socialMedia";
 
+import { Edit2 } from "lucide-react"
 
 import { SquareArrowOutUpRight } from "lucide-react";
 import {
@@ -37,22 +38,23 @@ export const ProfileCard = ({id, profileUser, isOwnProfile}:{id: string,profileU
     
     const session = useSession()
 
-    return <section className="w-full min-h-dvh flex flex-col items-center justify-center px-4">
+    return <section className="w-full min-h-dvh flex flex-col items-center justify-center px-4 pb-20">
     {/* hello, this is the profile page for:<br/>
     {id} */}
-    <h1 className="mb-20 text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-neutral-100 to-neutral-400 font-semibold text-center">
+    <h1 className="text-3xl mt-20 mb-10 md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-neutral-100 to-neutral-400 font-semibold text-center flex flex-col items-center justify-center gap-2">
         {profileUser?.name}
         {/* now, edit button */}
         {
             !!isOwnProfile&&
             <Popover>
-                <PopoverTrigger className="text-xs text-white m-2 font-semibold bg-neutral-800 px-4 py-1 rounded-full active:scale-95 hover:bg-neutral-600 whitespace-nowrap flex items-center">
-                    Edit
+                <PopoverTrigger className="text-xs  w-full text-white font-semibold bg-neutral-800 px-4 py-2 rounded-full active:scale-95 hover:bg-neutral-600 whitespace-nowrap flex items-center justify-center">
+                    <Edit2 className="mr-2 w-4 h-4"/>
+                    Edit name
                 </PopoverTrigger>
                 <PopoverContent className="bg-neutral-900 text-white border-2  border-neutral-500">
                     <form action={async (FormData) => {
                         const newName = FormData.get("profileLink") as string
-                        if(!!newName && newName.trim() !== ""){
+                        if(!!newName && newName.trim() !== "" && newName!==profileUser?.name){
                         await updateUserName(id, newName);
                         
                         try{
