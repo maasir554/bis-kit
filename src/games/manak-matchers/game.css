@@ -22,7 +22,7 @@ a {
    --bg-color-two:rgb(0, 18, 26);
    --common-ancestor-font-size : 16px; 
    --game-mg-top: 5px;
-   --game-card-width:75px; /*150*/
+   --game-card-width:75x; /*150*/
    --button-outline : 2.5px; /*5*/
    --grid-size : 1fr 1fr 1fr 1fr; /* default size will be 4x4*/
    --grid-gutters: 5px;
@@ -157,32 +157,6 @@ main{
 
 .back{
    transform:rotateY(180deg);
-}
-
-
-.bottom-footer{
-   display : grid;
-   grid-template-columns: var(--bottom-footer-template-columns);
-   background-color: #0008ff1e;
-   width: 100%;
-   height: auto;
-   font-size: 0.75em;
-   justify-content: center;
-   padding: 7.5px 20px;
-}
-
-.bottom-footer > p {
-   color: rgb(255, 255, 255);
-   justify-content: flex-end;
-   margin-right: 5px;
-   display: inline-flex;
-}
-
-.bottom-footer > span{
-   display: flex;
-   align-items: center;
-   justify-content: flex-end;
-   margin-right: 2.5px;
 }
 
 
@@ -486,6 +460,33 @@ link-btn will be used for buttons with website links :-
 }
 
 
+/* For very small screens, like smart watch. */
+@media only screen and (min-width :0px) and (max-width:275px) {
+    :root{
+        --common-ancestor-font-size : 8px;
+        --gi-spacing : 1.0px;
+        --game-card-width :21vw;
+        --card-circle-border :0.5px solid rgb(255, 255, 255);
+        --menu-padding : 1.5px;
+        --game-info-min-height : 0px;
+        --grid-gutters:1.5px;
+        --game-mg-top : 2.5px;
+        --top-nav-height :25px;
+        --game-card-border :1px;
+        --top-nav-height : 50px;
+    }
+    .bottom-footer > p{
+        display: none;
+    }
+    #GH-download-btn{
+        display: none;
+    }
+    #GH-fork-btn{
+        display: none;
+    }
+}
+
+
 
 /* For Small-Sized mobile phones :- */
 
@@ -493,7 +494,7 @@ link-btn will be used for buttons with website links :-
     :root{
         --common-ancestor-font-size : 10px;
         --gi-spacing : 5px;
-        --game-card-width :20vw;
+        --game-card-width :22vw;
         --game-mg-top : 2px;
         --top-nav-height : 30px;
         --button-outline : 5px;
@@ -543,7 +544,7 @@ link-btn will be used for buttons with website links :-
     :root{
         --common-ancestor-font-size : 16px;
         --gi-spacing : 5px;
-        --game-card-width :15vh;
+        --game-card-width :17.5vh;
         --game-mg-top : 2px;
         --top-nav-height : 30px;
         --button-outline : 5px;
@@ -560,7 +561,7 @@ link-btn will be used for buttons with website links :-
     :root{
         --common-ancestor-font-size : 16px;
         --gi-spacing : 5px;
-        --game-card-width :15vh;
+        --game-card-width :17.5vh;
         --game-mg-top : 2px;
         --top-nav-height : 30px;
         --button-outline : 5px;
@@ -574,7 +575,7 @@ link-btn will be used for buttons with website links :-
     :root{
         --common-ancestor-font-size : 16px;
         --gi-spacing : 5px;
-        --game-card-width :15vh;
+        --game-card-width :17.5vh;
         --game-mg-top : 2px;
         --top-nav-height : 50px;
         --button-outline : 5px;
@@ -584,6 +585,7 @@ link-btn will be used for buttons with website links :-
     }
 
 }
+
 :root{
     --victory-box-height :300px;
     --victory-box-padding : 20px;

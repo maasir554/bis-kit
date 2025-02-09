@@ -98,7 +98,11 @@ export const GameWindow = ({gamename}:{gamename:string}) => {
       return (
       <div className="relative h-full w-[95%] overflow-hidden rounded-xl">
         <iframe 
-          src={gamename!== "a-gold-story"?`/api/games/${gamename}?file=index.html`:"/a-gold-story/index.html"}
+          src={(
+                gamename!== "a-gold-story" && 
+                gamename !== "school-of-trust" &&
+                gamename !== "path-of-integrity"
+                )?`/api/games/${gamename}?file=index.html`:`/${gamename}/index.html`}
 
             className= "w-full h-full border-none"
 

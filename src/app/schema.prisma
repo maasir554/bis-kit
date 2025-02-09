@@ -59,3 +59,15 @@ model StandardTracker {
   currentIndex    Int       @default(0)
   lastUpdated     DateTime  @default(now())
 }
+
+model assetImage {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  filename    String
+  driveId     String
+  directLink  String
+  contentType String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("assetImages")
+}
