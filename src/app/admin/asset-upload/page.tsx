@@ -30,7 +30,7 @@ export default function AdminImageUpload() {
         throw new Error('Upload failed');
       }
 
-      const data = await response.json();
+      // const data = await response.json();
       
       // Clear the form
       setFile(null);
