@@ -69,7 +69,7 @@ function preload() {
       //let path2 = row.getString("ballooncolor");
 
       //give path2 random path out of 7 paths
-      let path2 = "assets/balloon" + floor(random(1, 8)) + ".png";
+      let path2 = "/assets/balloon" + floor(random(1, 8)) + ".png";
 
       relationships[item1] = item2;
       itemImages[item1] = loadImage(path1);
