@@ -66,7 +66,10 @@ function preload() {
       let item2 = row.getString("item2");
       let path1 = row.getString("pathtoitem1");
       let standardImage = row.getString("pathtoitem2"); // Add this line to get standard image path
-      let path2 = row.getString("ballooncolor");
+      //let path2 = row.getString("ballooncolor");
+
+      //give path2 random path out of 7 paths
+      let path2 = "assets/balloon" + floor(random(1, 8)) + ".png";
 
       relationships[item1] = item2;
       itemImages[item1] = loadImage(path1);
@@ -94,7 +97,7 @@ function hideLoadingScreen() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   balloonSize = min(width, height) * 0.3;
-  clickRadius = balloonSize * 0.8;
+  clickRadius = balloonSize * 0.75;
   for (let i = 0; i < totalFrames; i++) {
     let x = i * frameWidth;
     let frame = popSpriteSheet.get(x, 0, frameWidth, frameHeight);
@@ -429,7 +432,7 @@ function drawPauseMenu() {
   rect(0, 0, width, height);
 
   fill(255);
-  textSize(36);
+  textSize(balloonSize * 0.2);
   textAlign(CENTER, CENTER);
   text("Game Paused", width / 2, height / 3);
 
@@ -442,8 +445,8 @@ function drawPauseMenu() {
   rect(width / 2 - width * 0.1, height / 2 + height * 0.12, width * 0.2, height * 0.1, 10);
   noStroke();
 
-  fill(255);
-  textSize(24);
+  fill(0);
+  textSize(balloonSize * 0.1);
   text("Resume", width / 2, height / 2 + height * 0.05);
   text("Back to Menu", width / 2, height / 2 + height * 0.17);
 }
@@ -901,6 +904,43 @@ function handleInput(x, y) {
   }
 }
 
+// Add this helper function above the Balloon class
+function wrapText(text, maxWidth, textSize) {
+  //textSize(textSize);
+  let words = text.split(' ');
+  let lines = [];
+  let currentLine = '';
+
+  for (let word of words) {
+    let testLine = currentLine ? currentLine + ' ' + word : word;
+    let testWidth = textWidth(testLine);
+    if (testWidth > maxWidth) {
+      if (currentLine === '') {
+        lines.push(word);
+      } else {
+        lines.push(currentLine);
+        currentLine = word;
+      }
+    } else {
+      currentLine = testLine;
+    }
+  }
+  if (currentLine !== '') {
+    lines.push(currentLine);
+  }
+  return lines;
+}
+
+// Add this function to find product name from standard
+function getProductForStandard(standard) {
+  for (let product in relationships) {
+    if (relationships[product] === standard) {
+      return product;
+    }
+  }
+  return "Unknown Product";
+}
+
 
 class Balloon {
   constructor(x, y, standard) {
@@ -1046,15 +1086,47 @@ class Balloon {
   show() {
     if (!this.clicked) {
       imageMode(CENTER);
+      image(itemImages[this.standard], this.x, this.y - this.size/4, this.size, this.size*1.2);
+    
+      // if (standardImages[this.standard]) {
+      //   image(standardImages[this.standard], this.x, this.y + this.size/1.2, this.size, this.size);
+      // }
+    
+      // Get product name and standard text
+      const productName = getProductForStandard(this.standard);
+      const standardText = this.standard;
+      const combinedText = `${productName}\n${standardText}`;
+    
+      // Text styling
+      fill(0);
+      stroke(0);
+      strokeWeight(0.2);
+      textAlign(CENTER, CENTER);
       
-      // Draw the product image (balloon)
-      image(itemImages[this.standard], this.x, this.y - this.size/4, this.size*1.2, this.size * 1.8);
+      // Calculate text dimensions
+      const maxWidth = this.size * 0.8;
+      let fontSize = this.size * 0.1;
+      let lines = [];
       
-      // Draw the standard image below
-      if (standardImages[this.standard]) {
-        image(standardImages[this.standard], this.x, this.y + this.size/1.2, this.size, this.size);
+      // Adjust font size to fit
+      while (fontSize > 8) {
+        textSize(fontSize);
+        lines = wrapText(combinedText, maxWidth, fontSize);
+        const lineHeight = textAscent() + textDescent();
+        const totalHeight = lines.length * lineHeight;
+        
+        if (totalHeight < this.size * 0.4) break;
+        fontSize -= 1;
       }
-      
+    
+      // Calculate vertical position
+      const lineHeight = textAscent() + textDescent();
+      const startY = this.y - this.size/2.5 - (lines.length * lineHeight)/2;
+    
+      // Draw each line
+      lines.forEach((line, index) => {
+        text(line, this.x, startY + index * lineHeight*1.5);
+      });
     } else {
       this.showPopAnimation();
     }
